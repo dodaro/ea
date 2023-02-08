@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>it.unical.demacs.informatica</groupId>
-    <artifactId>MySecureRESTAPIWithSpring</artifactId>
+    <artifactId>SpringSecurityJWT</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>MySecureRESTAPIWithSpring</name>
     <description>MySecureRESTAPIWithSpring</description>
