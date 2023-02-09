@@ -16,6 +16,7 @@ import java.util.Map;
 
 public class TokenStore {
 
+    // This key has been randomly generated, of course this should not be public in real projects! :)
     private final String secretKey = "23778sah9021-12123-12s-as-12a-AS_12xoiJN-SHWQ98";
 
     private final static TokenStore instance = new TokenStore();
