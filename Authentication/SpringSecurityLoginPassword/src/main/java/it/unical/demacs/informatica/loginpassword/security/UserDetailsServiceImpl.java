@@ -1,7 +1,7 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring.security;
+package it.unical.demacs.informatica.loginpassword.security;
 
-import it.unical.demacs.informatica.mysecurerestapiwithspring.domain.UserAccount;
-import it.unical.demacs.informatica.mysecurerestapiwithspring.repositories.UserRepository;
+import it.unical.demacs.informatica.loginpassword.domain.UserAccount;
+import it.unical.demacs.informatica.loginpassword.repositories.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

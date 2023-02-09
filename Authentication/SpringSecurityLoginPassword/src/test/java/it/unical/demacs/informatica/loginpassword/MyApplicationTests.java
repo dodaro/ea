@@ -1,4 +1,4 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring;
+package it.unical.demacs.informatica.loginpassword;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

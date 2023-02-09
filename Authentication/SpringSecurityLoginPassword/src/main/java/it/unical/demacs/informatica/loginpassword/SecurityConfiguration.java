@@ -1,7 +1,6 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring;
+package it.unical.demacs.informatica.loginpassword;
 
-import it.unical.demacs.informatica.mysecurerestapiwithspring.security.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import it.unical.demacs.informatica.loginpassword.security.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,7 +20,7 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder(12);
     }
 
-    private UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     public SecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
