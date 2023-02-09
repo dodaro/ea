@@ -1,9 +1,9 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring.controllers;
+package it.unical.demacs.informatica.springjwt.controllers;
 
 import com.nimbusds.jose.JOSEException;
-import it.unical.demacs.informatica.mysecurerestapiwithspring.domain.UserAccount;
-import it.unical.demacs.informatica.mysecurerestapiwithspring.repositories.UserRepository;
-import it.unical.demacs.informatica.mysecurerestapiwithspring.security.TokenStore;
+import it.unical.demacs.informatica.springjwt.domain.UserAccount;
+import it.unical.demacs.informatica.springjwt.repositories.UserRepository;
+import it.unical.demacs.informatica.springjwt.security.TokenStore;
 import jakarta.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
@@ -22,9 +22,9 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:8080")
 public class UserController {
 
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
-    private AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
     public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;

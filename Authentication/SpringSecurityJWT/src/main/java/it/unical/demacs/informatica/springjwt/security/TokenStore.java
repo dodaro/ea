@@ -1,4 +1,4 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring.security;
+package it.unical.demacs.informatica.springjwt.security;
 
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
@@ -13,14 +13,12 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class TokenStore {
 
-    private String secretKey = "23778sah9021-12123-12s-as-12a-AS_12xoiJN-SHWQ98";
+    private final String secretKey = "23778sah9021-12123-12s-as-12a-AS_12xoiJN-SHWQ98";
 
-    private static TokenStore instance = new TokenStore();
+    private final static TokenStore instance = new TokenStore();
 
     private TokenStore() {
     }

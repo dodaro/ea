@@ -1,4 +1,4 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring;
+package it.unical.demacs.informatica.springjwt;
 
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
