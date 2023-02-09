@@ -1,7 +1,7 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring.security;
+package it.unical.demacs.informatica.springsession.security;
 
-import it.unical.demacs.informatica.mysecurerestapiwithspring.domain.UserAccount;
-import it.unical.demacs.informatica.mysecurerestapiwithspring.repositories.UserRepository;
+import it.unical.demacs.informatica.springsession.domain.UserAccount;
+import it.unical.demacs.informatica.springsession.repositories.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;

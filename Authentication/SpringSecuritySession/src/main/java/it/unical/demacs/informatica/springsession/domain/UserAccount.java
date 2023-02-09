@@ -1,4 +1,4 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring.domain;
+package it.unical.demacs.informatica.springsession.domain;
 
 import jakarta.persistence.*;
 

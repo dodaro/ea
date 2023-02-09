@@ -1,4 +1,4 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring;
+package it.unical.demacs.informatica.springsession;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

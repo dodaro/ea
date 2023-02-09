@@ -1,7 +1,7 @@
-package it.unical.demacs.informatica.mysecurerestapiwithspring.controllers;
+package it.unical.demacs.informatica.springsession.controllers;
 
-import it.unical.demacs.informatica.mysecurerestapiwithspring.domain.UserAccount;
-import it.unical.demacs.informatica.mysecurerestapiwithspring.repositories.UserRepository;
+import it.unical.demacs.informatica.springsession.domain.UserAccount;
+import it.unical.demacs.informatica.springsession.repositories.UserRepository;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:8080")
 public class UserController {
 
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
