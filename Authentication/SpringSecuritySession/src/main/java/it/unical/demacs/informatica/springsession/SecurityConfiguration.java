@@ -20,16 +20,6 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder(12);
     }
 
-    private final UserDetailsServiceImpl userDetailsService;
-
-    public SecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
-
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.

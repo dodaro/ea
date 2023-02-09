@@ -25,17 +25,10 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder(12);
     }
 
-    private final UserDetailsServiceImpl userDetailsService;
-
     private final RequestFilter requestFilter;
 
-    public SecurityConfiguration(UserDetailsServiceImpl userDetailsService, RequestFilter requestFilter) {
-        this.userDetailsService = userDetailsService;
+    public SecurityConfiguration(RequestFilter requestFilter) {
         this.requestFilter = requestFilter;
-    }
-
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
