@@ -1,0 +1,8 @@
+/*C4*/SET SCHEMA PUBLIC
+drop table if exists orders cascade 
+drop sequence orders_SEQ if exists
+create sequence orders_SEQ start with 1 increment by 50
+create table orders (id bigint not null, description varchar(255), price float(53) not null, primary key (id))
+INSERT INTO ORDERS VALUES(1,'order1',10.0E0)
+ALTER SEQUENCE PUBLIC.ORDERS_SEQ RESTART WITH 51
+COMMIT
