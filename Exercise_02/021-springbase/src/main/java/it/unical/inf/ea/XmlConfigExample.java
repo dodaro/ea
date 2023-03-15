@@ -12,7 +12,7 @@ public class XmlConfigExample
     {
 		@SuppressWarnings("resource") ApplicationContext ctx = new ClassPathXmlApplicationContext("xml/beans.xml");
         
-        Employee employee = ctx.getBean(Employee.class);
+        Employee employee = (Employee) ctx.getBean("employee");
          
         Department department = ctx.getBean(Department.class);
          
