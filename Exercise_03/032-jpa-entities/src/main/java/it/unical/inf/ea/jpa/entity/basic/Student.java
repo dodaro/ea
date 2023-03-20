@@ -38,6 +38,7 @@ public class Student {
 
 
   @Temporal(TemporalType.DATE)
+  @Column(name="BIRTH_DATE")
   //with JPA 2.2, we also have support for java.time.LocalDate, java.time.LocalTime, java.time.LocalDateTime,
   // java.time.OffsetTime and java.time.OffsetDateTime.
   private Date birthDate;

@@ -19,8 +19,6 @@ public class Company {
  
     private String address;
  
-    private String phone;
-
     @Embedded
     @AttributeOverrides({
         @AttributeOverride( name = "firstName", column = @Column(name = "contact_first_name")),
