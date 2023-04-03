@@ -15,8 +15,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -48,10 +46,6 @@ public class Student {
     @Column(name = "FIRSTNAME")
     private String firstName;
 
-    //    @Column(name = "BIRTHDATE")
-    //    @Temporal(TemporalType.DATE)
-    //    private Date birthDateAsDate;
-
     @Column(name = "BIRTHDATE")
     private LocalDate birthDate;
 
@@ -78,11 +72,7 @@ public class Student {
     )
     private List<Course> courses = new ArrayList<>();
 
-
     public void addCourse(Course course) {
         this.courses.add(course);
     }
-
-
-
 }

@@ -8,6 +8,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.ListJoin;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import lombok.Data;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDate;
@@ -15,45 +16,16 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+// Dynamic Queries With Specifications
 public class UniSpecification {
 
+  @Data
   public static class Filter {
     private String firstName;
     private String lastName;
     private Integer age;
     private Student.Gender gender;
 
-    public String getFirstName() {
-      return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-      this.firstName = firstName;
-    }
-
-    public String getLastName() {
-      return lastName;
-    }
-
-    public void setLastName(String lastName) {
-      this.lastName = lastName;
-    }
-
-    public Integer getAge() {
-      return age;
-    }
-
-    public void setAge(Integer age) {
-      this.age = age;
-    }
-
-    public Student.Gender getGender() {
-      return gender;
-    }
-
-    public void setGender(Student.Gender gender) {
-      this.gender = gender;
-    }
   }
 
   private UniSpecification() {
