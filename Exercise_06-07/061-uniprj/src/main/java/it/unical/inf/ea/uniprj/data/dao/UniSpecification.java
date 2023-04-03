@@ -14,6 +14,7 @@ import org.springframework.data.jpa.domain.Specification;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // Dynamic Queries With Specifications
@@ -86,7 +87,7 @@ public class UniSpecification {
         }
 
         if (predicates.isEmpty())
-          predicates.add(criteriaBuilder.equal(root.get("id"), -1L));
+          predicates.add(criteriaBuilder.equal(root.get("id"), -1L)); // passami almeno un filtro
 
         return criteriaQuery.where(criteriaBuilder.and(predicates.toArray(new Predicate[0])))//
             .distinct(true) //
@@ -99,6 +100,7 @@ public class UniSpecification {
   public static Specification<Course> anotherFilter(String... names) {
     return (Specification<Course>) (root, criteriaQuery, criteriaBuilder) -> {
       Predicate predicate = criteriaBuilder.conjunction();
+
       predicate = criteriaBuilder.and(predicate, root.join("teacher").get("lastName")).in(names);
       return  criteriaQuery.where(predicate).getRestriction();
     };

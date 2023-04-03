@@ -2,6 +2,8 @@ package it.unical.inf.ea.uniprj.services;
 
 import it.unical.inf.ea.uniprj.data.dao.CourseDao;
 import it.unical.inf.ea.uniprj.data.dao.StudentDao;
+import it.unical.inf.ea.uniprj.data.service.CourseService;
+import it.unical.inf.ea.uniprj.data.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +11,10 @@ import org.springframework.stereotype.Service;
 public class SchoolHoursService {
 
   @Autowired
-  private StudentDao studentDao;
+  private StudentService studentService;
 
   @Autowired
-  private CourseDao courseDao;
+  private CourseService courseService;
 
   public String make() {
     //...

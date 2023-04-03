@@ -19,6 +19,17 @@ import java.awt.print.Book;
 @Repository
 public interface TeacherDao extends JpaRepository<Teacher, Long>, JpaSpecificationExecutor<Teacher> {
 
+  default Specification<Teacher> nameLike(String name){
+    return new Specification<Teacher>() {
+
+      @Override
+      public Predicate toPredicate(Root<Teacher> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+        return criteriaBuilder.like(root.get("firstName"), "%"+name+"%");
+      }
+    };
+  }
+
+
   default Specification<Teacher> theLastFilter(String... names) {
     return (Root<Teacher> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) -> {
       ListJoin<Teacher, Course> courses = root.joinList("courses");
@@ -28,15 +39,7 @@ public interface TeacherDao extends JpaRepository<Teacher, Long>, JpaSpecificati
     };
   }
 
-  default Specification<Teacher> nameLike(String name){
-    return new Specification<Teacher>() {
 
-      @Override
-      public Predicate toPredicate(Root<Teacher> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-          return criteriaBuilder.like(root.get("firstName"), "%"+name+"%");
-      }
-    };
-  }
 
 
   default Specification<Course> isPremium(String nameCourseStart, String nameTeacherStart) {
