@@ -25,7 +25,7 @@ public class BankServiceImpl implements BankService {
   @Override
   public Optional<List<Teller>> getAllTellersFromBankName(String bankName) {
     Bank bank = bankDao.findByName(bankName);
-    if(bank != null)
+    if (bank != null)
       return Optional.of(bank.getTellers());
     return Optional.empty();
   }
@@ -34,24 +34,20 @@ public class BankServiceImpl implements BankService {
   public List<Bank> countCosenzaBank() {
     String cosenzaLocation = "Cosenza";
     Integer numCosenzaBank = bankDao.countByLocation(cosenzaLocation);
-    Optional<List<Bank>> banksOpt = bankDao.findAllByLocation(cosenzaLocation);
+    List<Bank> banks = bankDao.findAllByLocation(cosenzaLocation);
 
-    if(banksOpt.isPresent()) {
-      List<Bank> banks = banksOpt.get();
-      for (Bank bank: banks) {
-        bank.numCosenzaBank = numCosenzaBank;
-      }
-      return banks;
+    for (Bank bank : banks) {
+      bank.numCosenzaBank = numCosenzaBank;
     }
-    return null;
+    return banks;
   }
 
   @Override
   @Transactional
   public void deleteAllCustomer(Long bankId) {
-    Bank bank = bankDao.findById(bankId).orElseThrow(()->new RuntimeException("ERROR"));
+    Bank bank = bankDao.findById(bankId).orElseThrow(() -> new RuntimeException("ERROR"));
     List<Customer> customers = bank.getCustomers();
-    for (Customer customer: customers) {
+    for (Customer customer : customers) {
       customerDao.delete(customer);
     }
   }

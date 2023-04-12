@@ -19,8 +19,10 @@ import java.util.List;
 @Repository
 public interface CustomerDao extends JpaRepository<Customer, Long>, JpaSpecificationExecutor<Customer> {
 
-  @Query("select c.tellers from CUSTOMER c where c.fiscalcode=: cf")
+  @Query("select c.tellers from CUSTOMER c where c.fiscalcode=:cf")
   List<Teller> getContract(String cf);
+
+  List<Customer> findAllByBirthdateGreaterThanEqual(LocalDate ld);
 
   default Specification<Customer> theLastFilter(Integer age) {
     return (Root<Customer> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) -> {

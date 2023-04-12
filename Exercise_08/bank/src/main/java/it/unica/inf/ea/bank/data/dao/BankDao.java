@@ -14,5 +14,5 @@ public interface BankDao extends JpaRepository<Bank, Long> {
 
   Integer countByLocation(String location);
 
-  Optional<List<Bank>> findAllByLocation(String location);
+  List<Bank> findAllByLocation(String location);
 }

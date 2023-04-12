@@ -9,14 +9,18 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AccountDao extends JpaRepository<Account, Long> {
 
   @Query("from Account a where a.credential=: cred")
-  List<Account> getAllBy(@Param("cred") Credential credential);
+  Optional<Account> getAllBy(@Param("cred") Credential credential);
 
-  List<Account> findAllByCredential(Credential credential);
+  @Query("from Account a where a.credential.username=:username and a.credential.password=:passw")
+  Optional<Account> getAllBy(@Param("username") String usern, @Param("passw")String pass);
+
+  Optional<Account> findByCredential(Credential credential);
 
   List<Account> findAllByCreationDateBetween(LocalDate from, LocalDate to);
 

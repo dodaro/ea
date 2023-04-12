@@ -38,5 +38,4 @@ public class Bank {
 
   @Transient
   public Integer numCosenzaBank;
-
 }

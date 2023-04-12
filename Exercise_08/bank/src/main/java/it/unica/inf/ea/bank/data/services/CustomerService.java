@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CustomerService {
   List<Customer> getByAge(Integer age);
+
+  List<Customer> getByAge2(Integer age);
 }
