@@ -39,6 +39,6 @@ public interface StudentDao
   List<StudentValue> countByGenger();
 
   // 091
-  Page<Student> findAllByLastName(String name, Pageable pageable);
+  Page<Student> findAllByLastNameLike(String name, Pageable pageable);
 
 }

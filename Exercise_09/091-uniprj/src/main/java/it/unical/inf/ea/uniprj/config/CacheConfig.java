@@ -26,8 +26,9 @@ public class CacheConfig {
   public static final String CACHE_FOR_STUDENTS = "STUDENT";
   public static final String CACHE_FOR_TEACHER_ID = "TEACHER_ID";
 
-  @Bean
+  @Bean("cacheManager")
   public CacheManager manager() {
+
     return new ConcurrentMapCacheManager(CACHE_FOR_STUDENTS, CACHE_FOR_TEACHER_ID);
   }
 

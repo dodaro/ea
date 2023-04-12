@@ -32,7 +32,6 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  @Cacheable(value = CacheConfig.CACHE_FOR_STUDENTS, key = "#root.methodName")
   public Collection<Student> findAll(Specification<Student> spec) {
     return studentDao.findAll(spec);
   }
@@ -41,6 +40,12 @@ public class StudentServiceImpl implements StudentService {
   @CacheEvict(allEntries = true, value = { CacheConfig.CACHE_FOR_STUDENTS })
   public void delete(Student student) {
     studentDao.delete(student);
+  }
+
+  @Override
+  @Cacheable(value = CacheConfig.CACHE_FOR_STUDENTS, key = "#root.methodName")
+  public Collection<Student> findAll() {
+    return studentDao.findAll();
   }
 
   @Override
@@ -64,6 +69,7 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
+  @Cacheable(value = CacheConfig.CACHE_FOR_STUDENTS, key = "#lastname + '-' + #firstname")
   public List<Student> getByLastNameAndFirstName(String lastname,
       String firstname) {
     return studentDao.findAllByLastNameAndFirstName(lastname, firstname);
@@ -119,12 +125,12 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public Page<Student> getAllPaged(int page) {
-    return studentDao.findAll( PageRequest.of(0, 2));
+    return studentDao.findAll( PageRequest.of(0, 5));
   }
 
   @Override
-  public Page<Student> getAllByLastName(String lastName, int page) {
+  public Page<Student> getAllByLastNameStartWith(String lastName, int page) {
     PageRequest pageRequest = PageRequest.of(SIZE_FOR_PAGE, page, Sort.by("lastName").ascending());
-    return studentDao.findAllByLastName(lastName, pageRequest);
+    return studentDao.findAllByLastNameLike(lastName, pageRequest);
   }
 }

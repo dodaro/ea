@@ -1,7 +1,9 @@
 package it.unical.inf.ea.uniprj.data.service;
 
+import it.unical.inf.ea.uniprj.config.CacheConfig;
 import it.unical.inf.ea.uniprj.data.dto.StudentValue;
 import it.unical.inf.ea.uniprj.data.entities.Student;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -30,6 +32,9 @@ public interface StudentService {
 
   List<Student> getByName(String name);
 
+  @Cacheable(value = CacheConfig.CACHE_FOR_STUDENTS, key = "#root.methodName")
+  Collection<Student> findAll();
+
   void delete(Student student);
 
   //091
@@ -41,5 +46,5 @@ public interface StudentService {
 
   Page<Student> getAllPaged(int page);
 
-  Page<Student> getAllByLastName(String lastName, int page);
+  Page<Student> getAllByLastNameStartWith(String lastName, int page);
 }
