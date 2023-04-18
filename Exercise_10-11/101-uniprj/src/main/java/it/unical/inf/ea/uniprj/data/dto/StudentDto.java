@@ -1,5 +1,6 @@
 package it.unical.inf.ea.uniprj.data.dto;
 
+import it.unical.inf.ea.uniprj.data.entities.Student;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;

@@ -38,7 +38,8 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public StudentBasicDto save(StudentDto studentDto) {
-    Student s = studentDao.save(modelMapper.map(studentDto, Student.class));
+    Student student = modelMapper.map(studentDto, Student.class);
+    Student s = studentDao.save(student);
     return modelMapper.map(s, StudentBasicDto.class);
   }
 
@@ -60,7 +61,8 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public StudentBasicDto getById(Long id) {
-    return modelMapper.map(studentDao.findById(id).orElseThrow(()->new EntityNotFoundException()), StudentBasicDto.class);
+    Student student = studentDao.findById(id).orElseThrow(() -> new EntityNotFoundException());
+    return modelMapper.map(student, StudentBasicDto.class);
   }
 
   @Override
@@ -77,7 +79,9 @@ public class StudentServiceImpl implements StudentService {
   @Cacheable(value = CacheConfig.CACHE_FOR_STUDENTS, key = "#lastname + '-' + #firstname")
   public List<StudentBasicDto> getByLastNameAndFirstName(String lastname,
       String firstname) {
-    return studentDao.findAllByLastNameAndFirstName(lastname, firstname).stream().map(s -> modelMapper.map(s, StudentBasicDto.class)).collect(Collectors.toList());
+    return studentDao.findAllByLastNameAndFirstName(lastname, firstname)
+        .stream().map(s -> modelMapper.map(s, StudentBasicDto.class))
+        .collect(Collectors.toList());
   }
 
   @Override
@@ -116,7 +120,9 @@ public class StudentServiceImpl implements StudentService {
   @Override
   @Cacheable(value = CacheConfig.CACHE_FOR_STUDENTS, key = "#root.methodName")
   public Collection<StudentDto> findAll() {
-    return studentDao.findAll().stream().map(s -> modelMapper.map(s, StudentDto.class)).collect(Collectors.toList());
+    return studentDao.findAll().stream()
+        .map(s -> modelMapper.map(s, StudentDto.class))
+        .collect(Collectors.toList());
   }
 
   @Override

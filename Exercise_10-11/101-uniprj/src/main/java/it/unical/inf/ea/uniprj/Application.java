@@ -20,18 +20,16 @@ import java.time.LocalDate;
 @SpringBootApplication
 public class Application {
 
-
-
   public static void main(String[] args) {
     ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
 
-    long studentId = stundentTest(context);
+    long studentId = studentTest(context);
     long teacherId = teacherTest(context);
 
 //    courseServiceTest(context);
 
         ThesisService thesisService = context.getBean(ThesisService.class);
-    Thesis thesis = thesisService.generateThesis("la mia tesi", studentId, teacherId);
+    Thesis thesis = thesisService.generateThesis("la mia tesi", studentId);
     System.out.println(thesis);
   }
 
@@ -63,7 +61,7 @@ public class Application {
     return teacherBasicDto.getId();
   }
 
-  private static long stundentTest(ConfigurableApplicationContext context) {
+  private static long studentTest(ConfigurableApplicationContext context) {
     StudentService studentService = context.getBean(StudentService.class);
     //		teacherService.add(new Teacher(....));
     StudentDto s = new StudentDto();

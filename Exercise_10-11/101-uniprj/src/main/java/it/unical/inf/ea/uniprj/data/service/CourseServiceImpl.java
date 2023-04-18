@@ -56,7 +56,15 @@ public class CourseServiceImpl implements CourseService {
   public List<CourseTeacherDto> getCourseTeacherDto() {
 
     List<Course> courses = courseDao.findAll();
-    return courses.stream().map(s -> modelMapper.map(s, CourseTeacherDto.class)).collect(Collectors.toList());
+    return courses.stream().map(s ->
+        modelMapper.map(s, CourseTeacherDto.class)).collect(Collectors.toList());
   }
 
 }
+
+
+
+
+
+
+

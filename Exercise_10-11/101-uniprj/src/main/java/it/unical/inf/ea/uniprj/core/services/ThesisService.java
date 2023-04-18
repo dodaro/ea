@@ -19,7 +19,7 @@ public class ThesisService {
 
   private final ModelMapper modelMapper;
 
-  public Thesis generateThesis(String title, Long teacherId, Long studentId) {
+  public Thesis generateThesis(String title, Long studentId) {
     Teacher teacher = teacherService.getAllTeacher().get(0);
     StudentBasicDto student = studentService.getById(studentId);
     Thesis thesis = modelMapper.map(teacher, Thesis.class);
