@@ -1,0 +1,20 @@
+1. creare un progetto mvn con
+    a. interfaccia
+        public interface Logger {
+
+          void log(String mex);
+
+          String getName();
+
+          void setName(String s);
+
+        }
+    b. classe ConsoleLog che implementa Logger e con il metodo log che scrive su console il messaggio
+    c. esportarlo in un jar
+
+2. creare un secondo progetto mvn tra le cui dipendenze ha il progetto al punto 1 e
+    a. creare una classe che FileLog che implementa Logger e con il metodo log che scrive su file
+    b. esportarlo in un jar
+
+3. creare un progetto (o usare il primo) che contiene una classe che carica tutti i jar presenti in una cartella del file system (dove avete caricato i jar create precedentemente), verifica se nel
+loro interno è presente un'istanza di Logger e la stampi
