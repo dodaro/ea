@@ -1,0 +1,72 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: application-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8070/eureka
+
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  health:
+    circuitbreakers:
+      enabled: true
+
+resilience4j.circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 4
+        permitted-number-of-calls-in-half-open-state: 10
+        wait-duration-in-open-state: 10000
+        failure-rate-threshold: 50
+        event-consumer-buffer-size: 10
+        register-health-indicator: true
+        record-exceptions:
+          - java.io.IOException
+          - java.util.concurrent.TimeoutException
+          - org.springframework.web.client.HttpServerErrorException
+          - org.springframework.web.client.ResourceAccessException
+          - io.netty.handler.timeout.ReadTimeoutException
+          - org.springframework.web.reactive.function.client.WebClientResponseException.NotFound
+          - org.springframework.web.reactive.function.client.WebClientResponseException.GatewayTimeout
+          - org.springframework.web.reactive.function.client.WebClientResponseException.ServiceUnavailable
+
+    instances:
+      userService:
+        base-config: default
+      postService:
+        base-config: default
+
+resilience4j.retry:
+    configs:
+      default:
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        ignore-exceptions:
+          - it.unical.demacs.informatica.applicationgateway.UnrecoverableException
+    instances:
+      userService:
+        base-config: default
+        maxAttempts: 3
+        waitDuration: 1000
+      postService:
+        base-config: default
+        maxAttempts: 2
+        waitDuration: 5000

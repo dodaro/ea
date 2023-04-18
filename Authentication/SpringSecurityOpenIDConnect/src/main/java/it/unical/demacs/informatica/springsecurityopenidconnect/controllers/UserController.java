@@ -28,6 +28,7 @@ public class UserController {
         model.addAttribute("userName", oauth2User.getName());
         model.addAttribute("clientName", authorizedClient.getClientRegistration().getClientName());
         model.addAttribute("userAttributes", oauth2User.getAttributes());
+        System.out.println(oauth2User);
         UserAccount userAccount = userRepository.findByUsername(oauth2User.getName());
         if(userAccount == null) {
             userAccount = new UserAccount(oauth2User.getName(),
@@ -49,6 +50,7 @@ public class UserController {
     @GetMapping(path="/users")
     @PreAuthorize("hasAuthority('SCOPE_openid') and #oauth2User.getAttribute('email').equals('carmine.dodaro@unical.it')")
     public Iterable<UserAccount> users(@AuthenticationPrincipal OAuth2User oauth2User) {
+        System.out.println(oauth2User);
         return userRepository.findAll();
     }
 }

@@ -1,0 +1,8 @@
+Per eseguire i progetti, scaricare Kafka 
+(https://kafka.apache.org/downloads) e avviare i server con i comandi:
+
+> bin/zookeeper-server-start.sh config/zookeeper.properties 
+
+e
+
+> bin/kafka-server-start.sh config/server.properties
