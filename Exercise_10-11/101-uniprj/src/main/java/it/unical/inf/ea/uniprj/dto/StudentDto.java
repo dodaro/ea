@@ -1,6 +1,6 @@
 package it.unical.inf.ea.uniprj.dto;
 
-import it.unical.inf.ea.uniprj.data.entities.Student;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -16,6 +16,7 @@ public class StudentDto {
 
     private String lastName;
 
+    @NotNull
     private String firstName;
 
     private LocalDate birthDate;

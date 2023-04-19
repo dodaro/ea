@@ -55,6 +55,8 @@ public class CourseServiceImpl implements CourseService {
   @Override
   public List<CourseTeacherDto> getCourseTeacherDto() {
 
+    if(true) //FIXME
+      throw new NullPointerException();
     List<Course> courses = courseDao.findAll();
     return courses.stream().map(s ->
         modelMapper.map(s, CourseTeacherDto.class)).collect(Collectors.toList());

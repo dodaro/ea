@@ -2,6 +2,7 @@ package it.unical.inf.ea.uniprj.controller;
 
 import it.unical.inf.ea.uniprj.dto.CourseTeacherDto;
 import it.unical.inf.ea.uniprj.data.service.CourseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/course")
+@RequestMapping("/course-api")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequiredArgsConstructor
 public class CourseController {
 
-  @Autowired
-  private CourseService courseService;
+  private final CourseService courseService;
 
   @GetMapping("/courses-teachers")
   public ResponseEntity<List<CourseTeacherDto>> all() {

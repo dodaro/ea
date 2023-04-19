@@ -24,7 +24,7 @@ public class ThesisService {
 
   @SneakyThrows
   public Thesis generateThesis(String title, Long studentId) {
-    if (StringUtils.isBlank(title) || title.length() <5)
+    if (StringUtils.isBlank(title) || title.length() < 5)
       throw new ThesisException("Title is blank or don't containt at least 5 character");
     Teacher teacher = teacherService.getAllTeacher().get(0);
     StudentBasicDto student = studentService.getById(studentId);

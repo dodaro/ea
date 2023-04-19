@@ -14,7 +14,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "COURSE_MATERIAL", uniqueConstraints =
-@UniqueConstraint(columnNames = {"COURSE_CODE", "RSS_NO"} ))
+    {
+        @UniqueConstraint(columnNames = { "COURSE_CODE", "RSS_NO" })
+    }
+)
 public class CourseMaterial {
 
     @Id

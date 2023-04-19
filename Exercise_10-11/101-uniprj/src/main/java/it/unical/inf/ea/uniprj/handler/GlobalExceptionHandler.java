@@ -34,12 +34,19 @@ public class GlobalExceptionHandler {
         return errorResponse(req, ex.getMessage());
     }
 
+    @ExceptionHandler(NullPointerException.class)
+    @ResponseStatus(HttpStatus.BAD_GATEWAY)
+    public String onResourceNotFoundException(WebRequest req, NullPointerException ex){
+        return "NULLLLLLLLLLLLLLLLLLLLLLLLLLLLL POINTER!!!";
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ServiceError onMethodArgumentNotValid(WebRequest req, MethodArgumentNotValidException ex){
 
         String message = ex.getBindingResult().getFieldErrors().stream()
-                                            .map(viol -> viol.getField().concat(" : ").concat(viol.getDefaultMessage()))
+                                            .map(viol -> viol.getField().concat(" : ")
+                                                .concat(viol.getDefaultMessage()))
                                             .collect(Collectors.joining(" , "));
         return errorResponse(req, message);
     }
