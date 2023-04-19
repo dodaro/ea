@@ -1,6 +1,6 @@
 package it.unical.inf.ea.uniprj.controller;
 
-import it.unical.inf.ea.uniprj.data.dto.CourseTeacherDto;
+import it.unical.inf.ea.uniprj.dto.CourseTeacherDto;
 import it.unical.inf.ea.uniprj.data.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

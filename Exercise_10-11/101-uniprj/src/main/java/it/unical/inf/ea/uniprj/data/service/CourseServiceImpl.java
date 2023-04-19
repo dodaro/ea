@@ -1,7 +1,7 @@
 package it.unical.inf.ea.uniprj.data.service;
 
 import it.unical.inf.ea.uniprj.data.dao.CourseDao;
-import it.unical.inf.ea.uniprj.data.dto.CourseTeacherDto;
+import it.unical.inf.ea.uniprj.dto.CourseTeacherDto;
 import it.unical.inf.ea.uniprj.data.entities.Course;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

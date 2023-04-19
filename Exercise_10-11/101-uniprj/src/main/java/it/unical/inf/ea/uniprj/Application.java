@@ -1,11 +1,11 @@
 package it.unical.inf.ea.uniprj;
 
 import it.unical.inf.ea.uniprj.core.services.ThesisService;
-import it.unical.inf.ea.uniprj.data.dto.Gender;
-import it.unical.inf.ea.uniprj.data.dto.StudentBasicDto;
-import it.unical.inf.ea.uniprj.data.dto.StudentDto;
-import it.unical.inf.ea.uniprj.data.dto.TeacherBasicDto;
-import it.unical.inf.ea.uniprj.data.dto.Thesis;
+import it.unical.inf.ea.uniprj.dto.Gender;
+import it.unical.inf.ea.uniprj.dto.StudentBasicDto;
+import it.unical.inf.ea.uniprj.dto.StudentDto;
+import it.unical.inf.ea.uniprj.dto.TeacherBasicDto;
+import it.unical.inf.ea.uniprj.dto.Thesis;
 import it.unical.inf.ea.uniprj.data.entities.Course;
 import it.unical.inf.ea.uniprj.data.entities.Teacher;
 import it.unical.inf.ea.uniprj.data.service.CourseService;
@@ -26,9 +26,9 @@ public class Application {
     long studentId = studentTest(context);
     long teacherId = teacherTest(context);
 
-//    courseServiceTest(context);
+    //    courseServiceTest(context);
 
-        ThesisService thesisService = context.getBean(ThesisService.class);
+    ThesisService thesisService = context.getBean(ThesisService.class);
     Thesis thesis = thesisService.generateThesis("la mia tesi", studentId);
     System.out.println(thesis);
   }
@@ -56,7 +56,7 @@ public class Application {
     teacher.setLastName("Poppins");
     teacher = teacherService.save(teacher);
 
-    TeacherBasicDto teacherBasicDto = teacherService.getById(1l);
+    TeacherBasicDto teacherBasicDto = teacherService.getTeacherBasicDtoById(1l);
     System.out.println(teacherBasicDto);
     return teacherBasicDto.getId();
   }

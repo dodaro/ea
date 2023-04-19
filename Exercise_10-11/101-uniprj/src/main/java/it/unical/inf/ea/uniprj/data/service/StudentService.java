@@ -1,10 +1,10 @@
 package it.unical.inf.ea.uniprj.data.service;
 
 import it.unical.inf.ea.uniprj.config.CacheConfig;
-import it.unical.inf.ea.uniprj.data.dto.Gender;
-import it.unical.inf.ea.uniprj.data.dto.StudentBasicDto;
-import it.unical.inf.ea.uniprj.data.dto.StudentDto;
-import it.unical.inf.ea.uniprj.data.dto.StudentValue;
+import it.unical.inf.ea.uniprj.dto.Gender;
+import it.unical.inf.ea.uniprj.dto.StudentBasicDto;
+import it.unical.inf.ea.uniprj.dto.StudentDto;
+import it.unical.inf.ea.uniprj.dto.StudentValue;
 import it.unical.inf.ea.uniprj.data.entities.Student;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -15,6 +15,8 @@ import java.util.Collection;
 import java.util.List;
 
 public interface StudentService {
+
+  void save(Student student);
 
   StudentBasicDto save(StudentDto student);
 

@@ -1,7 +1,6 @@
 package it.unical.inf.ea.uniprj.data.dao;
 
-import it.unical.inf.ea.uniprj.data.dto.Gender;
-import it.unical.inf.ea.uniprj.data.dto.StudentBasicDto;
+import it.unical.inf.ea.uniprj.dto.Gender;
 import it.unical.inf.ea.uniprj.data.entities.Course;
 import it.unical.inf.ea.uniprj.data.entities.Student;
 import it.unical.inf.ea.uniprj.data.entities.Teacher;

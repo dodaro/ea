@@ -1,6 +1,6 @@
 package it.unical.inf.ea.uniprj.data.service;
 
-import it.unical.inf.ea.uniprj.data.dto.TeacherBasicDto;
+import it.unical.inf.ea.uniprj.dto.TeacherBasicDto;
 import it.unical.inf.ea.uniprj.data.entities.Teacher;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -15,7 +15,9 @@ public interface TeacherService {
 
   Teacher save(Teacher teacher);
 
-  TeacherBasicDto getById(Long valueOf);
+  TeacherBasicDto getTeacherBasicDtoById(Long id);
+
+  Teacher getTeacherById(Long id);
 
   List<Teacher> getAllTeacherByLastFilter(String... names);
 

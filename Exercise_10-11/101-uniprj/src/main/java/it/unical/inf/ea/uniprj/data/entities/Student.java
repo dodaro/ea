@@ -1,7 +1,6 @@
 package it.unical.inf.ea.uniprj.data.entities;
 
-import it.unical.inf.ea.uniprj.data.dto.Gender;
-import it.unical.inf.ea.uniprj.data.dto.StudentBasicDto;
+import it.unical.inf.ea.uniprj.dto.Gender;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Basic;

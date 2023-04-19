@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniprj.data.dto;
+package it.unical.inf.ea.uniprj.dto;
 
 import it.unical.inf.ea.uniprj.data.entities.Student;
 import lombok.Data;

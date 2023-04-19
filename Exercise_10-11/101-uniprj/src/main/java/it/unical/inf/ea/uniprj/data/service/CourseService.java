@@ -1,6 +1,6 @@
 package it.unical.inf.ea.uniprj.data.service;
 
-import it.unical.inf.ea.uniprj.data.dto.CourseTeacherDto;
+import it.unical.inf.ea.uniprj.dto.CourseTeacherDto;
 import it.unical.inf.ea.uniprj.data.entities.Course;
 import org.springframework.data.jpa.domain.Specification;
 

@@ -1,9 +1,12 @@
 package it.unical.inf.ea.uniprj.controller;
 
-import it.unical.inf.ea.uniprj.data.dto.Gender;
-import it.unical.inf.ea.uniprj.data.dto.StudentBasicDto;
-import it.unical.inf.ea.uniprj.data.dto.StudentDto;
+import io.swagger.v3.oas.annotations.Parameter;
+import it.unical.inf.ea.uniprj.core.services.ThesisService;
+import it.unical.inf.ea.uniprj.dto.Gender;
+import it.unical.inf.ea.uniprj.dto.StudentBasicDto;
+import it.unical.inf.ea.uniprj.dto.StudentDto;
 import it.unical.inf.ea.uniprj.data.service.StudentService;
+import it.unical.inf.ea.uniprj.dto.Thesis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +24,27 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/student-api/")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StudentController {
 
   @Autowired
   private StudentService studentService;
 
+  @Autowired
+  private ThesisService thesisService;
+
   @GetMapping("/students")
   public ResponseEntity<List<StudentDto>> all() {
     return ResponseEntity.ok(studentService.getAllSorted());
+  }
+
+  @GetMapping("/students/{id}")
+  public ResponseEntity<StudentBasicDto> getById(@PathVariable("idStudent") Long id) {
+    StudentBasicDto s = studentService.getById(id);
+    if(s==null)
+      return ResponseEntity.notFound().build(); // meglio farlo nel service e gestire l'eccezione con l'handler
+    return ResponseEntity.ok(s);
   }
 
   @GetMapping("/students/test")
@@ -38,8 +52,8 @@ public class StudentController {
     return ResponseEntity.ok(studentService.getByLastname(name));
   }
 
-  @GetMapping("/students/{roles}")
-  public ResponseEntity<List<StudentBasicDto>> all(@PathVariable("roles") String gender) {
+  @GetMapping("/students/roles/{role}")
+  public ResponseEntity<List<StudentBasicDto>> all(@PathVariable("role") String gender) {
     List<StudentBasicDto> employees = studentService.getByGender(Gender.valueOf(gender));
     return ResponseEntity.ok(employees);
   }
@@ -50,15 +64,19 @@ public class StudentController {
   }
 
   @PutMapping("/students/{id}")
-  public ResponseEntity<StudentBasicDto> update(@PathVariable Long id,
-                                            @RequestBody StudentDto employee) {
+  public ResponseEntity<StudentBasicDto> update(@PathVariable("idStudent") Long id, @RequestBody StudentDto employee) {
     StudentBasicDto s = studentService.updateStudent(id, employee);
     return ResponseEntity.ok(s);
   }
 
   @DeleteMapping("/students/{id}")
-  public HttpStatus delete(@PathVariable Long id) {
+  public HttpStatus delete(@PathVariable("idStudent") Long id) {
     studentService.delete(id);
     return HttpStatus.OK;
+  }
+
+  @PostMapping("/thesis/{idStudent}")
+  public ResponseEntity<Thesis> add(@PathVariable("idStudent") Long id, @RequestParam String title) {
+    return ResponseEntity.ok(thesisService.generateThesis(title, id));
   }
 }

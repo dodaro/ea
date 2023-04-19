@@ -2,10 +2,10 @@ package it.unical.inf.ea.uniprj.data.service;
 
 import it.unical.inf.ea.uniprj.config.CacheConfig;
 import it.unical.inf.ea.uniprj.data.dao.StudentDao;
-import it.unical.inf.ea.uniprj.data.dto.Gender;
-import it.unical.inf.ea.uniprj.data.dto.StudentBasicDto;
-import it.unical.inf.ea.uniprj.data.dto.StudentDto;
-import it.unical.inf.ea.uniprj.data.dto.StudentValue;
+import it.unical.inf.ea.uniprj.dto.Gender;
+import it.unical.inf.ea.uniprj.dto.StudentBasicDto;
+import it.unical.inf.ea.uniprj.dto.StudentDto;
+import it.unical.inf.ea.uniprj.dto.StudentValue;
 import it.unical.inf.ea.uniprj.data.entities.Address;
 import it.unical.inf.ea.uniprj.data.entities.Student;
 import jakarta.persistence.EntityNotFoundException;
@@ -37,6 +37,11 @@ public class StudentServiceImpl implements StudentService {
   private final ModelMapper modelMapper;
 
   @Override
+  public void save(Student student) {
+    studentDao.save(student);
+  }
+
+  @Override
   public StudentBasicDto save(StudentDto studentDto) {
     Student student = modelMapper.map(studentDto, Student.class);
     Student s = studentDao.save(student);
@@ -61,7 +66,7 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public StudentBasicDto getById(Long id) {
-    Student student = studentDao.findById(id).orElseThrow(() -> new EntityNotFoundException());
+    Student student = studentDao.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Don't exist a teacher with id: [%s]", id)));
     return modelMapper.map(student, StudentBasicDto.class);
   }
 

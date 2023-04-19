@@ -1,12 +1,9 @@
 package it.unical.inf.ea.uniprj.config;
 
-import it.unical.inf.ea.uniprj.data.dto.StudentDto;
-import it.unical.inf.ea.uniprj.data.dto.TeacherBasicDto;
-import it.unical.inf.ea.uniprj.data.entities.Student;
+import it.unical.inf.ea.uniprj.dto.TeacherBasicDto;
 import it.unical.inf.ea.uniprj.data.entities.Teacher;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
-import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

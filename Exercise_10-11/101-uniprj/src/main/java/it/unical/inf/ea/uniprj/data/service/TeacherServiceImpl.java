@@ -3,14 +3,13 @@ package it.unical.inf.ea.uniprj.data.service;
 import it.unical.inf.ea.uniprj.config.CacheConfig;
 import it.unical.inf.ea.uniprj.data.dao.CourseDao;
 import it.unical.inf.ea.uniprj.data.dao.TeacherDao;
-import it.unical.inf.ea.uniprj.data.dto.TeacherBasicDto;
+import it.unical.inf.ea.uniprj.dto.TeacherBasicDto;
 import it.unical.inf.ea.uniprj.data.entities.Course;
 import it.unical.inf.ea.uniprj.data.entities.Teacher;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -60,11 +59,16 @@ public class TeacherServiceImpl implements TeacherService {
 
   @Override
   @Cacheable(value = CacheConfig.CACHE_FOR_TEACHER_ID, key = "#id")
-  public TeacherBasicDto getById(Long id) {
+  public TeacherBasicDto getTeacherBasicDtoById(Long id) {
     Optional<Teacher> opt = teacherDao.findById(id);
     Teacher teacher = opt.orElseThrow(() -> new EntityNotFoundException(String.format("Don't exist a teacher with id: [%s]", id)));
 
     return modelMapper.map(teacher, TeacherBasicDto.class);
+  }
+
+  @Override
+  public Teacher getTeacherById(Long id) {
+    return teacherDao.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Don't exist a teacher with id: [%s]", id)));
   }
 
   @Override
