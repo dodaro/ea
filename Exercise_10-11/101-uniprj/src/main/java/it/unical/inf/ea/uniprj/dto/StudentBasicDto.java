@@ -17,6 +17,10 @@ public class StudentBasicDto {
 
     private String firstName;
 
+    private String email;
+
+    private double examAverageGrade;
+
     private LocalDate birthDate;
 
     private Gender gender;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <logger name="org.springframework" level="ERROR"/>
-    <logger name="com.zetcode" level="INFO"/>
+    <logger name="it.unical" level="INFO"/>
 
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

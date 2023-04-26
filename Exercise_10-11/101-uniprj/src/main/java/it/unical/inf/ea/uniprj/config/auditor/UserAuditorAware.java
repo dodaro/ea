@@ -1,15 +1,15 @@
-package it.unical.inf.ea.uniprj.config;
+package it.unical.inf.ea.uniprj.config.auditor;
 
 import org.springframework.data.domain.AuditorAware;
 
 import java.util.Optional;
-import java.util.Random;
 
 public class UserAuditorAware implements AuditorAware<Long> {
 
+  private static final long AUTH_CODE = 1_000_001L;
   @Override
   public Optional<Long> getCurrentAuditor() {
     // logica per ricavare l'utente loggato (SpringSecurity)
-    return Optional.of(new Random().nextLong(3));
+    return Optional.of(AUTH_CODE);
   }
 }

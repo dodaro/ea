@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniprj.config;
+package it.unical.inf.ea.uniprj.config.auditor;
 
 import org.springframework.data.domain.AuditorAware;
 

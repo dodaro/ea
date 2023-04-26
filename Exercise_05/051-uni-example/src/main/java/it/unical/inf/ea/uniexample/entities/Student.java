@@ -45,6 +45,12 @@ public class Student {
     @Column(name = "FIRSTNAME")
     private String firstName;
 
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "EXAM_AVERAGE_GRADE")
+    private double examAverageGrade;
+
     @Column(name = "BIRTHDATE")
     @Temporal(TemporalType.DATE)
     private Date birthDateAsDate;
