@@ -19,13 +19,12 @@ public class LanguageResolver extends AcceptHeaderLocaleResolver {
 
     if (StringUtils.isEmpty(language)) {
       return defaultLocale;
+    }
+    Locale requestLocale = Locale.forLanguageTag(language);
+    if (supportedLocales.contains(requestLocale)) {
+      return requestLocale;
     } else {
-      Locale requestLocale = Locale.forLanguageTag(language);
-      if (supportedLocales.contains(requestLocale)) {
-        return requestLocale;
-      } else {
-        return defaultLocale;
-      }
+      return defaultLocale;
     }
   }
 

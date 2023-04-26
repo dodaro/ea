@@ -1,6 +1,7 @@
 package it.unical.inf.ea.uniprj.data.service;
 
 import it.unical.inf.ea.uniprj.config.CacheConfig;
+import it.unical.inf.ea.uniprj.config.i18n.MessageLang;
 import it.unical.inf.ea.uniprj.data.dao.StudentDao;
 import it.unical.inf.ea.uniprj.data.entities.Address;
 import it.unical.inf.ea.uniprj.data.entities.Student;
@@ -36,6 +37,8 @@ public class StudentServiceImpl implements StudentService {
 
   private final ModelMapper modelMapper;
 
+  private final MessageLang messageLang;
+
   @Override
   public void save(Student student) {
     studentDao.save(student);
@@ -66,7 +69,7 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public StudentBasicDto getById(Long id) {
-    Student student = studentDao.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Don't exist a teacher with id: [%s]", id)));
+    Student student = studentDao.findById(id).orElseThrow(() -> new EntityNotFoundException(messageLang.getMessage("teacher.notexist", id)));
     return modelMapper.map(student, StudentBasicDto.class);
   }
 
