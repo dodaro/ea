@@ -16,13 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-
-import java.util.Arrays;
 
 @Configuration
 @RequiredArgsConstructor
@@ -52,14 +45,12 @@ public class SecurityConfig {
             })
             .and()
             .authorizeHttpRequests(authorize -> authorize
-//                .requestMatchers(HttpMethod.POST, "/auth/signup").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/refreshToken").permitAll()
                 .requestMatchers(HttpMethod.GET, "/products/welcome").permitAll()
             )
 
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.GET, "/products/welcome").permitAll()
                 .requestMatchers("/products/all").hasRole("ADMIN")
                 .requestMatchers("/products/*").hasRole("BASIC")
                 .requestMatchers("/products/random").hasAnyRole("ADMIN", "BASIC")

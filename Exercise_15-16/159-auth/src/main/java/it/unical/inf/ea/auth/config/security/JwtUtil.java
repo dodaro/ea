@@ -81,7 +81,6 @@ public abstract class JwtUtil {
     }
 
     public static UsernamePasswordAuthenticationToken parseToken(String token) throws JOSEException, BadJOSEException, ParseException {
-//        byte[] secretKey = SECRET.getBytes();
         SignedJWT signedJWT = SignedJWT.parse(token);
         signedJWT.verify(new MACVerifier(SECRET));
         ConfigurableJWTProcessor<SecurityContext> jwtProcessor = new DefaultJWTProcessor<>();

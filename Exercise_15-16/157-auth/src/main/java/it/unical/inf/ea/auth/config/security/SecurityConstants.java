@@ -12,7 +12,7 @@ public class SecurityConstants {
     public static final String BEARER_TOKEN_PREFIX = "Bearer ";
     public static final String BASIC_TOKEN_PREFIX =  "Basic ";
     public static final String AUTH_HEADER = "Authorization";
-    public static final String LOGIN_URI_ENDING = "/login";
+    public static final String LOGIN_URI_ENDING = "/signin";
     public static final String REALM_HEADER = "WWW-Authenticate";
 
 }

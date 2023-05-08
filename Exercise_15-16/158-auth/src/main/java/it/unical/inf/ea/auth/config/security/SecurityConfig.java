@@ -45,10 +45,10 @@ public class SecurityConfig {
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/refreshToken").permitAll()
+                .requestMatchers(HttpMethod.GET, "/products/welcome").permitAll()
             )
 
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.GET, "/products/welcome").permitAll()
                 .requestMatchers("/products/all").hasRole("ADMIN")
                 .requestMatchers("/products/*").hasRole("BASIC")
                 .requestMatchers("/products/random").hasAnyRole("ADMIN", "BASIC")
