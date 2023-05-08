@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class LoggedUserDetails implements UserDetails, Serializable {
+public class LoggedUserDetails implements UserDetails {
 
   private static final long serialVersionUID = 1;
 

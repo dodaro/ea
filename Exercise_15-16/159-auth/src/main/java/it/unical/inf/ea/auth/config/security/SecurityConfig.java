@@ -1,46 +1,49 @@
 package it.unical.inf.ea.auth.config.security;
 
+import it.unical.inf.ea.auth.config.security.filter.CustomAuthenticationFilter;
+import it.unical.inf.ea.auth.config.security.filter.CustomAuthorizationFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
 
 @Configuration
-@EnableWebSecurity
 @RequiredArgsConstructor
+@EnableWebSecurity
 public class SecurityConfig {
 
-    private final AuthenticationConfiguration authenticationConfiguration;
-
     @Bean
-    public AuthenticationManager authManager() throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
     }
 
     @Bean
-    public CustomRequestHeaderTokenFilter customFilter() throws Exception {
-        return new CustomRequestHeaderTokenFilter(authManager());
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain1(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
         http
             .csrf().disable()
+            .cors()
+            .and()
+            .requiresChannel(channel ->
+                channel.anyRequest().requiresSecure())
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
             .exceptionHandling()
             .authenticationEntryPoint((request, response, authEx) -> {
                 response.setHeader("WWW-Authenticate", "Basic realm=\"Access to /login authentication endpoint\"");
@@ -48,13 +51,12 @@ public class SecurityConfig {
                 response.getWriter().write("{ \"Error\": \"" + authEx.getMessage() + " - You are not authenticated.\" }");
             })
             .and()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/auth/signup").permitAll()
-                .requestMatchers(HttpMethod.GET, "/auth/login").authenticated())
+//                .requestMatchers(HttpMethod.POST, "/auth/signup").permitAll()
+                .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/refreshToken").permitAll()
+                .requestMatchers(HttpMethod.GET, "/products/welcome").permitAll()
+            )
 
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(HttpMethod.GET, "/products/welcome").permitAll()
@@ -66,9 +68,11 @@ public class SecurityConfig {
 
                 .anyRequest().authenticated()
             )
-        ;
 
-        http.addFilterBefore( customFilter(), UsernamePasswordAuthenticationFilter.class);
+            .addFilter(new CustomAuthenticationFilter(authenticationManager))
+            .addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+            .headers().cacheControl();
+
         return http.build();
     }
 

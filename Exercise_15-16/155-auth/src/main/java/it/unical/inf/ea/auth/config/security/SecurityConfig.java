@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests().requestMatchers("/products/**")
                 .authenticated()
-                //                .and().formLogin()
+//                                .and().formLogin()
                 .and().httpBasic()
                 .and().build();
     }
