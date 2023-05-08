@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "bfd397f9-8b7f-4e9f-b232-0f1f820a894b",
+		"name": "UNI - EA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13272617"
+	},
+	"item": [
+		{
+			"name": "153-greeting",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "1000001",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/utility-api/greeting",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utility-api",
+						"greeting"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "155_156-welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/products/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "155_156-all products",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/products/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "158-login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/158/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"158",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "157 login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "157 products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB1bmkuaXQiLCJpYXQiOjE2ODMzMDQ2OTgsImV4cCI6MTY4MzM0MDY5OH0.VyJhN41fHC--0rq1YZRdJ4sytN0wwidmhd5WjmPN_K8_Ozr5B90liqmVW_brLcuS",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "158-users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1000001",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/158/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"158",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "159-login Copy",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/159/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"159",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "159-refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB1bmkuaXQiLCJleHAiOjE2ODM1MzAyMDMsImlhdCI6MTY4MzQ3MDIwM30.Ph42NpgRGpQcU6HgXSs0EcTvT8eQPWkr-MKZTlNtBV8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/159/refreshToken",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"159",
+						"refreshToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "159-users Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo4NDQzLzE1OS9sb2dpbiIsInN1YiI6ImFkbWluQHVuaS5pdCIsImV4cCI6MTY4MzYwMjg1MiwiaWF0IjoxNjgzNTQyODUyLCJyb2xlcyI6WyJST0xFX0FETUlOIl19._H9JBmPYCaTbAIdl0-d7nVIaUHT2UK1kamNzI88wofE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/159/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"159",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "159-welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/159/products/welcome",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"159",
+						"products",
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "i18n",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/utility-api/test-lang",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utility-api",
+						"test-lang"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
