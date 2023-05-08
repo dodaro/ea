@@ -66,7 +66,7 @@ public abstract class JwtUtil {
         try {
             JWTClaimsSet claims = new JWTClaimsSet.Builder()
                 .subject(username)
-                .expirationTime(Date.from(Instant.now().plusSeconds(SecurityConstants.EXPIRATION_TIME)))
+                .expirationTime(Date.from(Instant.now().plusSeconds(SecurityConstants.EXPIRATION_REFRESH_TOKEN_TIME)))
                 .issueTime(new Date())
                 .build();
 

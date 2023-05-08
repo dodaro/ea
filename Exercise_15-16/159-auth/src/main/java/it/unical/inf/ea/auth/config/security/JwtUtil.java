@@ -31,9 +31,6 @@ import java.util.stream.Collectors;
 
 public abstract class JwtUtil {
 
-//    private static final int expireHourToken = 24;
-//    private static final int expireHourRefreshToken = 72;
-
     private static SecretKey SECRET = new SecretKeySpec(Base64.getDecoder().decode(SecurityConstants.JWT_SECRET), "HmacSHA256");
 
 
@@ -66,7 +63,7 @@ public abstract class JwtUtil {
         try {
             JWTClaimsSet claims = new JWTClaimsSet.Builder()
                 .subject(username)
-                .expirationTime(Date.from(Instant.now().plusSeconds(SecurityConstants.EXPIRATION_TIME)))
+                .expirationTime(Date.from(Instant.now().plusSeconds(SecurityConstants.EXPIRATION_REFRESH_TOKEN_TIME)))
                 .issueTime(new Date())
                 .build();
 

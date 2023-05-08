@@ -1,7 +1,6 @@
 package it.unical.inf.ea.auth.config.cors;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -15,7 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addMapping("/**")
 //        .allowedOrigins("http://localhost:8080")
 //        .allowedMethods(CorsConfiguration.ALL)
-        .allowedMethods("/**")
+//        .allowedMethods("/**")
         .allowedMethods("POST", "OPTIONS", "GET", "DELETE", "PUT")
         .allowedHeaders("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization")
         .maxAge(3600)

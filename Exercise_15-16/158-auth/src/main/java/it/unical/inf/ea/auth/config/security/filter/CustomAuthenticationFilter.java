@@ -29,9 +29,6 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
-/**
- * Created by Vincenzo Racca
- */
 @Slf4j
 @RequiredArgsConstructor
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -55,14 +52,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             password = JwtUtil.decodedBase64(headerToken)[1];
             this.logger.trace(LogMessage.format("Credentials username '%s' and password '&s' have been found in Basic Authorization header", username, password));
             Authentication authResult = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-//            SecurityContextHolder.getContext().setAuthentication(authResult);
             logger.info("(Authenticated) Authentication: " + authResult.toString());
             return authResult;
-            //            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, password);
-//            Authentication authResult = this.authenticationManager.authenticate(authentication);
-////            SecurityContextHolder.getContext().setAuthentication(authResult);
-//            logger.info("(Authenticated) Authentication: " + authResult.toString());
-//            return authResult;
         }
         catch (AuthenticationException e) {
             log.error(String.format(BAD_CREDENTIAL_MESSAGE, username, password), e);

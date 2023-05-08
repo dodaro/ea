@@ -43,9 +43,8 @@ public class SecurityConfig {
             })
             .and()
             .authorizeHttpRequests(authorize -> authorize
-//                .requestMatchers(HttpMethod.POST, "/auth/signup").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/refreshToken").permitAll()
+                .requestMatchers(HttpMethod.GET, "/refreshToken").permitAll()
             )
 
             .authorizeHttpRequests(authorize -> authorize
@@ -65,44 +64,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-/*
-    @Bean
-    public SecurityFilterChain filterChain1(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
-            .exceptionHandling()
-            .authenticationEntryPoint((request, response, authEx) -> {
-                response.setHeader("WWW-Authenticate", "Basic realm=\"Access to /signin authentication endpoint\"");
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                response.getWriter().write("{ \"Error\": \"" + authEx.getMessage() + " - You are not authenticated.\" }");
-            })
-            .and()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/auth/signup").permitAll()
-                .requestMatchers(HttpMethod.GET, "/auth/login").permitAll())
-
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.GET, "/products/welcome").permitAll()
-                .requestMatchers("/products/all").hasRole("ADMIN")
-                .requestMatchers("/products/*").hasRole("BASIC")
-                .requestMatchers("/products/random").hasAnyRole("ADMIN", "BASIC")
-
-                .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
-
-                .anyRequest().authenticated()
-            )
-        ;
-
-//        http.addFilter(new CustomAuthenticationFilter(authManager()));
-        http.addFilterBefore( customAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
- */
 
     @Bean
     public PasswordEncoder passwordEncoder() {

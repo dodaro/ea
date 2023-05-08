@@ -45,7 +45,7 @@ public class UserService {
   }
 
   @Transactional(readOnly = true)
-  public Map<String,String> refreshToken(String authorizationHeader, String issuer) throws BadJOSEException, ParseException, JOSEException {
+  public Map<String,String>  refreshToken(String authorizationHeader, String issuer) throws BadJOSEException, ParseException, JOSEException {
 
     String refreshToken = authorizationHeader.substring("Bearer ".length());
     UsernamePasswordAuthenticationToken authenticationToken = JwtUtil.parseToken(refreshToken);
