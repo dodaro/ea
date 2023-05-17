@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: springboot-keycloak
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8181/realms/UniEa
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+jwt:
+  auth:
+    converter:
+      resource-id: uniEa-client
+      principal-attribute: preferred_username
+
+server:
+  port: '8282'
+  servlet:
+    context-path: /api

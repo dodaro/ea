@@ -1,0 +1,20 @@
+<p>
+  student works!
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Cognome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of students">
+      <td>{{ s.id }}</td>
+      <td>{{ s.lastName }}</td>
+      <td>{{ s.firstName }}</td>
+    </tr>
+  </tbody>
+</table>

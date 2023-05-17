@@ -6,3 +6,6 @@ target/
 .mvn
 mvnw
 mvnw.cmd
+.angular/
+.vscode/
+node_modules/

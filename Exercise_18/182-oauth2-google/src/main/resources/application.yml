@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: springboot-keycloak
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 972753554155-10fuc00dd86cpq1e0hcsq7f3rhb4uhfc.apps.googleusercontent.com
+            client-secret: .... secret ....
+            scope: openid,profile,email
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
+jwt:
+  auth:
+    converter:
+      resource-id: uniEa-client
+      principal-attribute: preferred_username
+
+server:
+  port: '8383'
+#  servlet:
+#    context-path: /api
