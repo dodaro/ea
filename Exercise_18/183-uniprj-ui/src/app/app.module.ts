@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,9 +29,9 @@ import { API_BASE_PATH } from 'src/environments/environment';
     {
       provide: Configuration,
       useFactory: (authService: Configuration) => new Configuration({ basePath: API_BASE_PATH }),
-      deps: [API_BASE_PATH],
       multi: false
     },
+
 
     CourseControllerService, StudentControllerService, OthersControllerService
   ],

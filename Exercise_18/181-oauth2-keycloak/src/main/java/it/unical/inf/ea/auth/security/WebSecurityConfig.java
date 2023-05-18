@@ -16,6 +16,7 @@ public class WebSecurityConfig {
 
     public static final String ADMIN = "admin";
     public static final String BASIC = "basic";
+
     private final JwtAuthConverter jwtAuthConverter;
 
     @Bean
