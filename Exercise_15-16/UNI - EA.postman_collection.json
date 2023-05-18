@@ -106,41 +106,6 @@
 			"response": []
 		},
 		{
-			"name": "158-login",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "passwd",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "admin@uni.it",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/158/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"158",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "157 login",
 			"request": {
 				"auth": {
@@ -161,7 +126,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/auth/login",
+					"raw": "http://localhost:8080/auth/signin",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -169,7 +134,7 @@
 					"port": "8080",
 					"path": [
 						"auth",
-						"login"
+						"signin"
 					]
 				}
 			},
@@ -183,7 +148,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB1bmkuaXQiLCJpYXQiOjE2ODMzMDQ2OTgsImV4cCI6MTY4MzM0MDY5OH0.VyJhN41fHC--0rq1YZRdJ4sytN0wwidmhd5WjmPN_K8_Ozr5B90liqmVW_brLcuS",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB1bmkuaXQiLCJpYXQiOjE2ODM1NjAyMjcsImV4cCI6MTY4MzU5NjIyN30.or1zuSflZWBIhH0WIOjtH_b4F4vqYH771qCGjV0kl8xy6BKafY2cw7FYZVFAwcpB",
 							"type": "string"
 						}
 					]
@@ -206,6 +171,41 @@
 			"response": []
 		},
 		{
+			"name": "158-login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "158-users",
 			"request": {
 				"auth": {
@@ -221,15 +221,39 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/158/users",
+					"raw": "http://localhost:8080/api/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"158",
+						"api",
 						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "158-welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/products/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"welcome"
 					]
 				}
 			},
@@ -256,14 +280,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/159/login",
+					"raw": "https://localhost:8443/api/login",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "8443",
 					"path": [
-						"159",
+						"api",
 						"login"
 					]
 				}
@@ -278,7 +302,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB1bmkuaXQiLCJleHAiOjE2ODM1MzAyMDMsImlhdCI6MTY4MzQ3MDIwM30.Ph42NpgRGpQcU6HgXSs0EcTvT8eQPWkr-MKZTlNtBV8",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo4NDQzL2FwaS9sb2dpbiIsInN1YiI6ImFkbWluQHVuaS5pdCIsImV4cCI6MTY4MzU1OTkxNSwiaWF0IjoxNjgzNTU5ODU1LCJyb2xlcyI6WyJST0xFX0FETUlOIl19.UPujqmyD7iNDxt3ZhQTlHaxIr0242Hntg4YwQGRpaFg",
 							"type": "string"
 						}
 					]
@@ -286,14 +310,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/159/refreshToken",
+					"raw": "https://localhost:8443/api/refreshToken",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "8443",
 					"path": [
-						"159",
+						"api",
 						"refreshToken"
 					]
 				}
@@ -308,7 +332,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo4NDQzLzE1OS9sb2dpbiIsInN1YiI6ImFkbWluQHVuaS5pdCIsImV4cCI6MTY4MzYwMjg1MiwiaWF0IjoxNjgzNTQyODUyLCJyb2xlcyI6WyJST0xFX0FETUlOIl19._H9JBmPYCaTbAIdl0-d7nVIaUHT2UK1kamNzI88wofE",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo4NDQzL2FwaS9sb2dpbiIsInN1YiI6ImFkbWluQHVuaS5pdCIsImV4cCI6MTY4MzU1OTkxNSwiaWF0IjoxNjgzNTU5ODU1LCJyb2xlcyI6WyJST0xFX0FETUlOIl19.UPujqmyD7iNDxt3ZhQTlHaxIr0242Hntg4YwQGRpaFg",
 							"type": "string"
 						}
 					]
@@ -316,14 +340,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/159/users",
+					"raw": "https://localhost:8443/api/users",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "8443",
 					"path": [
-						"159",
+						"api",
 						"users"
 					]
 				}
@@ -339,14 +363,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/159/products/welcome",
+					"raw": "https://localhost:8443/api/products/welcome",
 					"protocol": "https",
 					"host": [
 						"localhost"
 					],
 					"port": "8443",
 					"path": [
-						"159",
+						"api",
 						"products",
 						"welcome"
 					]
@@ -377,6 +401,14 @@
 						"test-lang"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
