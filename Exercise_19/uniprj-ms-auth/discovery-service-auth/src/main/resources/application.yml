@@ -1,0 +1,11 @@
+spring:
+  config:
+    import: "optional:configserver:http://config-service:8088"
+    activate:
+      on-profile: docker
+---
+spring:
+  application:
+    name: discovery-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
