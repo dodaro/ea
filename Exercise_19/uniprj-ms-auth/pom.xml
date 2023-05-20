@@ -25,9 +25,10 @@
 
 
     <modules>
-        <module>auth-service-auth</module>
         <module>config-service-auth</module>
         <module>discovery-service-auth</module>
+        <module>gateway-service-auth</module>
+        <module>auth-service-auth</module>
         <module>student-service-auth</module>
         <module>course-service-auth</module>
         <module>teacher-service-auth</module>
