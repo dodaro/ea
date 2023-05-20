@@ -1,8 +1,8 @@
 package it.unical.inf.ea.uniprjms.ms.course.service;
 
 import it.unical.inf.ea.uniprjms.ms.course.client.TeacherClient;
-import it.unical.inf.ea.uniprjms.ms.course.data.entities.Course;
 import it.unical.inf.ea.uniprjms.ms.course.data.service.CourseService;
+import it.unical.inf.ea.uniprjms.ms.course.data.entities.Course;
 import it.unical.inf.ea.uniprjms.ms.course.dto.CourseTeacherDto;
 import it.unical.inf.ea.uniprjms.ms.course.dto.TeacherBasicDto;
 import lombok.RequiredArgsConstructor;

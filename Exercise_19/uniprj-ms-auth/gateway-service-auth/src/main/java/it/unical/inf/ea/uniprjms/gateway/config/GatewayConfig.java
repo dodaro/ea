@@ -17,6 +17,15 @@ public class GatewayConfig
 	@Bean
 	public RouteLocator routes(RouteLocatorBuilder builder)
 	{
+		/*
+		Questa sezione sovrascrive l'indirizzamento delle rotte sul file gateway.yml
+
+		Se si vuole utilizzare l'indirizzamento delle rotte su file yml, creare un GatewayFilterFactory
+		e utilizzarlo nella sezione
+		filters:
+        - RewritePath=/student-api/(?<path>.*), /$\{path}
+        - [HERE]
+		 */
 		return builder
 				.routes()
 					.route("course-service", r -> r.path("/course-api/**")
@@ -31,7 +40,7 @@ public class GatewayConfig
 								//.and().method("GET")
 							.filters(f -> f.filter(jwtAuthFilter).rewritePath("/teacher-api/(?<path>.*)", "/$\\{path}"))
 							.uri("lb://teacher-service"))
-				   .route("auth-service", r -> r.path("/auth/**")
+				   .route("auth-service", r -> r.path("/auth-api/**")
 						   .filters(f -> f.filter(jwtAuthFilter).rewritePath("/auth-api/(?<path>.*)", "/$\\{path}"))
 						   .uri("lb://auth-service"))
 

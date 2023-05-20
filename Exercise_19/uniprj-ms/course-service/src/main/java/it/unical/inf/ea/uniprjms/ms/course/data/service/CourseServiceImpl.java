@@ -1,7 +1,7 @@
 package it.unical.inf.ea.uniprjms.ms.course.data.service;
 
-import it.unical.inf.ea.uniprjms.ms.course.data.dao.CourseDao;
 import it.unical.inf.ea.uniprjms.ms.course.data.entities.Course;
+import it.unical.inf.ea.uniprjms.ms.course.data.dao.CourseDao;
 import it.unical.inf.ea.uniprjms.ms.course.dto.CourseTeacherDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

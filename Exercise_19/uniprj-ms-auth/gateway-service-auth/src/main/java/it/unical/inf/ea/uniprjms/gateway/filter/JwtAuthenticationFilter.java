@@ -29,7 +29,7 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 @Slf4j
 @RequiredArgsConstructor
 @RefreshScope
-public class JwtAuthenticationFilter implements GatewayFilter 
+public class JwtAuthenticationFilter implements GatewayFilter /*GatewayFilterFactory*/
 {
 	@Autowired
 	private RouterValidator routerValidator;

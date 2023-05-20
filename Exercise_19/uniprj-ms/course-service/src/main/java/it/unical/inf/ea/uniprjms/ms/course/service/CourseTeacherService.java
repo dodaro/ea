@@ -6,11 +6,9 @@ import it.unical.inf.ea.uniprjms.ms.course.data.service.CourseService;
 import it.unical.inf.ea.uniprjms.ms.course.dto.CourseTeacherDto;
 import it.unical.inf.ea.uniprjms.ms.course.dto.TeacherBasicDto;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

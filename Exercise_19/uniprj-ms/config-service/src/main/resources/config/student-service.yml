@@ -18,7 +18,3 @@ spring:
     ansi:
       enabled: always
 
-management:
-  tracing:
-    sampling:
-      probability: 1.0

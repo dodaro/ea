@@ -45,17 +45,14 @@ spring:
         filters:
         - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
 
+
+# http://localhost:8060/swagger-ui.html
 springdoc:
   swagger-ui:
     urls:
-      - name: student
-        url: /v3/api-docs/student
-      - name: teacher
-        url: /v3/api-docs/teacher
-      - name: course
-        url: /v3/api-docs/course
-
-management:
-  tracing:
-    sampling:
-      probability: 1.0
+      - name: student-api
+        url: /v3/api-docs/student-api
+      - name: teacher-api
+        url: /v3/api-docs/teacher-api
+      - name: course-api
+        url: /v3/api-docs/course-api

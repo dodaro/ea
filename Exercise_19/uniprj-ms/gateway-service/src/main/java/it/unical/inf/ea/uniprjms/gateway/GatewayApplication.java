@@ -1,5 +1,6 @@
 package it.unical.inf.ea.uniprjms.gateway;
 
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springdoc.core.models.GroupedOpenApi;
@@ -16,16 +17,15 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+@RequiredArgsConstructor
 public class GatewayApplication {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(GatewayApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
 
-	@Autowired
-	private RouteDefinitionLocator locator;
+//	@Autowired
+	private final RouteDefinitionLocator locator;
 
 	@Bean
 	public List<GroupedOpenApi> apis() {
