@@ -1,25 +1,5 @@
 version: '1'
 services:
-  dock1-server:
-    container_name: dock1-server
-    build:
-      context: ../151-dock1
-      dockerfile: ../151-dock1/Dockerfile
-    image: dock1-server:latest
-    ports:
-      - "8081:8181"
-    networks:
-      - spring-cloud-network
-  dock2-server:
-    container_name: dock2-server
-    build:
-      context: ../152-dock2
-      dockerfile: ../152-dock2/Dockerfile
-    image: dock2-server:latest
-    ports:
-      - "8082:8282"
-    networks:
-      - spring-cloud-network
   dock-postgresql:
     image: postgres:13
     container_name: dock-postgresql
@@ -41,6 +21,28 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+  dock1-server:
+    container_name: dock1-server
+    #depends_on: ...
+    build:
+      context: ../201-dock1
+      dockerfile: ../201-dock1/Dockerfile
+    image: dock1-server:latest
+    ports:
+      - "8081:8181"
+    networks:
+      - spring-cloud-network
+  dock2-server:
+    container_name: dock2-server
+    build:
+      context: ../202-dock2
+      dockerfile: ../202-dock2/Dockerfile
+    image: dock2-server:latest
+    ports:
+      - "8082:8282"
+    networks:
+      - spring-cloud-network
+
 networks:
   spring-cloud-network:
     driver: bridge
