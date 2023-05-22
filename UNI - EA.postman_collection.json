@@ -952,6 +952,26 @@
 			"response": []
 		},
 		{
+			"name": "19-ms-courses-teachers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8060/course-api/courses-teachers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8060",
+					"path": [
+						"course-api",
+						"courses-teachers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "19-ms-auth-login",
 			"request": {
 				"auth": {
@@ -994,7 +1014,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vSEVMRU5BLmhvbWVuZXQudGVsZWNvbWl0YWxpYS5pdDo0OTM5Mi9sb2dpbiIsInN1YiI6ImFkbWluQHVuaS5pdCIsImV4cCI6MTY4NDQyNzI2MywiaWF0IjoxNjg0NDI3MjAzLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.cMXBxDooms8wS7rFZ7TlGd0YeMgl0Jq_QKzHOuovGJo",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZjUxZTkzMmUyOTE1OjM4MTM3L2xvZ2luIiwic3ViIjoiYWRtaW5AdW5pLml0IiwiZXhwIjoxNjg0NjE5NDY0LCJpYXQiOjE2ODQ2MTk0MDQsInJvbGVzIjpbIlJPTEVfQURNSU4iXX0.KvA6u71i8JJH3NGQDWpSY0dboJts2sfh2gH7qhKldV8",
 							"type": "string"
 						}
 					]
@@ -1024,7 +1044,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vSEVMRU5BLmhvbWVuZXQudGVsZWNvbWl0YWxpYS5pdDo1MzU2MC9sb2dpbiIsInN1YiI6ImFkbWluQHVuaS5pdCIsImV4cCI6MTY4NDQyODgzMCwiaWF0IjoxNjg0NDI4NzcwLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.z13HJznM0F_vW2VhIkbWTlsV1CaEDrCURuoDYVhLyag",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vaG9zdC5kb2NrZXIuaW50ZXJuYWw6NTk3MzQvbG9naW4iLCJzdWIiOiJhZG1pbkB1bmkuaXQiLCJleHAiOjE2ODQ2MjA3MDksImlhdCI6MTY4NDYyMDY0OSwicm9sZXMiOlsiUk9MRV9BRE1JTiJdfQ.wvZ7YkxxpJ8i0xHjfwODWhXmbjJGYpX88i02MJ6JSiw",
 							"type": "string"
 						}
 					]
@@ -1041,6 +1061,77 @@
 					"path": [
 						"course-api",
 						"courses-teachers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "212-login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "10",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "212-welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-api-key",
+						"value": "FX001-99999",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/products/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"welcome"
 					]
 				}
 			},

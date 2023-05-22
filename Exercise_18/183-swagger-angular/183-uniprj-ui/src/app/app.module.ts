@@ -12,6 +12,7 @@ import { OthersControllerService } from './services/api/othersController.service
 import { StudentComponent } from './student/student.component';
 import { BASE_PATH, Configuration } from './services';
 import { API_BASE_PATH } from 'src/environments/environment';
+import { KeycloakService } from './services/KeycloakService';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { API_BASE_PATH } from 'src/environments/environment';
     },
 
 
-    CourseControllerService, StudentControllerService, OthersControllerService
+    CourseControllerService, StudentControllerService, OthersControllerService, KeycloakService
   ],
   bootstrap: [AppComponent]
 })
