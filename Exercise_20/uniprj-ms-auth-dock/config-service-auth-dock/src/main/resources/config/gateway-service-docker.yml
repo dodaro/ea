@@ -1,0 +1,78 @@
+server:
+  port: 8060
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service:8061/eureka/
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId:-},%X{spanId:-}] ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth-api/**
+          filters:
+            - RewritePath=/auth-api/(?<path>.*), /$\{path}
+        #        - name: JwtAuthenticationFilter
+        - id: student-service
+          uri: lb://student-service
+          predicates:
+            - Path=/student-api/**
+          filters:
+            - RewritePath=/student-api/(?<path>.*), /$\{path}
+        #        - name: JwtAuthenticationFilter
+        - id: teacher-service
+          uri: lb://teacher-service
+          predicates:
+            - Path=/teacher-api/**
+          filters:
+            - RewritePath=/teacher-api/(?<path>.*), /$\{path}
+        #        - name: JwtAuthenticationFilter
+        - id: course-service
+          uri: lb://course-service
+          predicates:
+            - Path=/course-api/**
+          filters:
+            - RewritePath=/course-api/(?<path>.*), /$\{path}
+        #        - name: JwtAuthenticationFilter
+        - id: openapi
+          uri: http://localhost:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+
+
+# http://localhost:8060/swagger-ui.html
+springdoc:
+  swagger-ui:
+    urls:
+      - name: student-api
+        url: /v3/api-docs/student-api
+      - name: teacher-api
+        url: /v3/api-docs/teacher-api
+      - name: course-api
+        url: /v3/api-docs/course-api
+      - name: auth-api
+        url: /v3/api-docs/auth-api
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans

@@ -1,0 +1,23 @@
+Avviare [mvn spring-boot:run] tutti i servizi nell'ordine:
+    config-service
+    discovery-service
+    gateway-service
+    [tutti_gli_altri]-service
+
+e poi runnare zipkin
+    > docker run -d --name zipkin -p 9411:9411 openzipkin/zipkin
+
+===== O =====
+Per creare le immagini docker
+    > mvn clean package -Pbuild-image
+
+Per avviare il docker-compose
+    > docker-compose up
+
+===========
+
+Per accedere a swagger
+    http://localhost:8060/swagger-ui.html
+
+Per accedere a zipkin
+    http://zipkin:9411/

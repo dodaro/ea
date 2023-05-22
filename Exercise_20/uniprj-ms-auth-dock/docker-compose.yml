@@ -1,0 +1,103 @@
+version: "3.7"
+services:
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    extra_hosts: [ 'host.docker.internal:host-gateway' ]
+    ports:
+      - "9411:9411"
+  config-service:
+    image: config-service-auth-dock:1.0-SNAPSHOT
+    ports:
+      - "8088:8088"
+    healthcheck:
+      test: curl --fail http://localhost:8088/employee/docker  || exit 1
+      interval: 5s
+      timeout: 2s
+      retries: 3
+  discovery-service:
+    image: discovery-service-auth-dock:1.0-SNAPSHOT
+    ports:
+      - "8061:8061"
+    depends_on:
+      config-service:
+        condition: service_healthy
+    links:
+      - config-service
+    healthcheck:
+      test: curl --fail http://localhost:8061/eureka/v2/apps || exit 1
+      interval: 4s
+      timeout: 2s
+      retries: 3
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+  auth-service:
+    image: auth-service-auth-dock:1.0-SNAPSHOT
+    ports:
+      - "8080"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    links:
+      - config-service
+      - discovery-service
+      - zipkin
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+  student-service:
+    image: student-service-auth-dock:1.0-SNAPSHOT
+    ports:
+      - "8080"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    links:
+      - config-service
+      - discovery-service
+      - zipkin
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+  teacher-service:
+    image: teacher-service-auth-dock:1.0-SNAPSHOT
+    ports:
+      - "8080"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    links:
+      - config-service
+      - discovery-service
+      - zipkin
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+  course-service:
+    image: course-service-auth-dock:1.0-SNAPSHOT
+    ports:
+      - "8080"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    links:
+      - config-service
+      - discovery-service
+      - teacher-service
+      - zipkin
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+  gateway-service:
+    image: gateway-service-auth-dock:1.0-SNAPSHOT
+    ports:
+      - "8060:8060"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    links:
+      - config-service
+      - discovery-service
+      - auth-service
+      - student-service
+      - teacher-service
+      - course-service
+      - zipkin

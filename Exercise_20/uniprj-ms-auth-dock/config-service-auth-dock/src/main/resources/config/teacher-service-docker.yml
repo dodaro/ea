@@ -1,0 +1,22 @@
+server:
+  port: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service:8061/eureka/
+      
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId:-},%X{spanId:-}] ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+springdoc:
+  packagesToScan: it.unical.inf.ea.uniprjms.ms.teacher
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
