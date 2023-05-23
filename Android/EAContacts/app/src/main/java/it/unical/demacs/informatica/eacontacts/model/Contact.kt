@@ -1,14 +1,39 @@
 package it.unical.demacs.informatica.eacontacts.model
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import java.io.ByteArrayOutputStream
 import java.util.UUID
 
-class Contact(val id: String = UUID.randomUUID().toString(),
-              val firstName: String,
-              val lastName: String,
-              val phoneNumber: String,
-              var preferred: Boolean = false,
-              val image: Bitmap? = null) {
+
+class BitmapConverter {
+    @TypeConverter
+    fun convertBitmap2ByteArray(bitmap: Bitmap) : ByteArray {
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        return outputStream.toByteArray()
+    }
+
+    @TypeConverter
+    fun convertByteArray2Bitmap(byteArray: ByteArray) : Bitmap {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
+}
+
+
+@TypeConverters(BitmapConverter::class)
+@Entity(tableName = "contacts")
+class Contact(@PrimaryKey val id: String = UUID.randomUUID().toString(),
+              @ColumnInfo(name="first_name") val firstName: String,
+              @ColumnInfo(name="last_name") val lastName: String,
+              @ColumnInfo(name="phone_number") val phoneNumber: String,
+              @ColumnInfo(name="preferred") var preferred: Boolean = false,
+              @ColumnInfo(name="image", typeAffinity = ColumnInfo.BLOB) val image: Bitmap? = null) {
     init {
         if (!validateFirstName(firstName))
             throw IllegalArgumentException("First name cannot be empty and greater than 30 characters")
