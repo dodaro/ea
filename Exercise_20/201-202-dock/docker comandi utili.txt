@@ -1,0 +1,26 @@
+docker build -t dock1 .
+docker run -it --name dock1-container -p 8081:8181 dock1
+docker image rm dock1
+docker container rm dock1-container
+
+docker build -t dock2 .
+docker run -it --name dock2-container -p 8082:8282 dock2
+docker image rm dock2
+docker container rm dock2-container
+
+
+
+docker-compose config
+docker-compose up --build
+
+
+
+
+
+
+docker container rm dock1-server
+docker container rm dock2-server
+docker image rm dock1-server
+docker image rm dock2-server
+docker rm dock-postgresql
+docker image rm dock-postgresql

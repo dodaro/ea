@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>uniprj-ms-auth-dock</artifactId>
+        <groupId>it.unical.inf.ea</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>config-service-auth-dock</artifactId>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>build-image</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <version>3.3.2</version>
+                        <configuration>
+                            <to>
+                                <image>${project.artifactId}:${project.version}</image>
+                            </to>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>dockerBuild</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+<!--                    					<plugin>-->
+<!--                    						<groupId>org.springframework.boot</groupId>-->
+<!--                    						<artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                    						<configuration>-->
+<!--                    							<image>-->
+<!--                    								<name>${project.artifactId}:${project.version}</name>-->
+<!--                    								<builder>paketobuildpacks/builder:full</builder>-->
+<!--                    							</image>-->
+<!--                    						</configuration>-->
+<!--                    						<executions>-->
+<!--                    							<execution>-->
+<!--                    								<goals>-->
+<!--                    									<goal>build-image</goal>-->
+<!--                    								</goals>-->
+<!--                    							</execution>-->
+<!--                    						</executions>-->
+<!--                    					</plugin>-->
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

@@ -1,0 +1,1141 @@
+{
+	"info": {
+		"_postman_id": "bfd397f9-8b7f-4e9f-b232-0f1f820a894b",
+		"name": "UNI - EA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13272617"
+	},
+	"item": [
+		{
+			"name": "153-greeting",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "1000001",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/utility-api/greeting",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utility-api",
+						"greeting"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "155_156-welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/products/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "155_156-all products",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/products/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "157 login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "157 products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkB1bmkuaXQiLCJpYXQiOjE2ODM1NjAyMjcsImV4cCI6MTY4MzU5NjIyN30.or1zuSflZWBIhH0WIOjtH_b4F4vqYH771qCGjV0kl8xy6BKafY2cw7FYZVFAwcpB",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "158-login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "158-users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1000001",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "158-welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/products/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"products",
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "159-login Copy",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "159-refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo4NDQzL2FwaS9sb2dpbiIsInN1YiI6ImFkbWluQHVuaS5pdCIsImV4cCI6MTY4MzU1OTkxNSwiaWF0IjoxNjgzNTU5ODU1LCJyb2xlcyI6WyJST0xFX0FETUlOIl19.UPujqmyD7iNDxt3ZhQTlHaxIr0242Hntg4YwQGRpaFg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/refreshToken",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"refreshToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "159-users Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo4NDQzL2FwaS9sb2dpbiIsInN1YiI6ImFkbWluQHVuaS5pdCIsImV4cCI6MTY4MzU1OTkxNSwiaWF0IjoxNjgzNTU5ODU1LCJyb2xlcyI6WyJST0xFX0FETUlOIl19.UPujqmyD7iNDxt3ZhQTlHaxIr0242Hntg4YwQGRpaFg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "159-welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/products/welcome",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"products",
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "i18n",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/utility-api/test-lang",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utility-api",
+						"test-lang"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "181-keycloak generate token admin",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "UniEa-keycloak-admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "globaladmin",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "uniEa-client",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8181/realms/UniEa/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/realms/UniEa/protocol/openid-connect/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"realms",
+						"UniEa",
+						"protocol",
+						"openid-connect",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "181-keycloak generate token basic",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "UniEa-keycloak-basic",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "uniEa-client",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8181/realms/UniEa/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/realms/UniEa/protocol/openid-connect/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"realms",
+						"UniEa",
+						"protocol",
+						"openid-connect",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "181-welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8282/api/products/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8282",
+					"path": [
+						"api",
+						"products",
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "181-products all (admin)",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "UniEa-keycloak-admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "globaladmin",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "uniEa-client",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8181/realms/UniEa/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8282/api/products/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8282",
+					"path": [
+						"api",
+						"products",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "181-product id (basic)",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "UniEa-keycloak-basic",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "uniEa-client",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8181/realms/UniEa/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8282/api/products/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8282",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "181-product random (admin o basic)",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "UniEa-keycloak-basic",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "uniEa-client",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8181/realms/UniEa/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8282/api/products/random",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8282",
+					"path": [
+						"api",
+						"products",
+						"random"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "182-google generate token",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "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",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "972753554155-10fuc00dd86cpq1e0hcsq7f3rhb4uhfc.apps.googleusercontent.com",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "scope",
+							"value": "openid profile email",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://oauth2.googleapis.com/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://accounts.google.com/o/oauth2/v2/auth",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.getpostman.com/oauth2/callback",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Google uni-ae-ag-app",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "182-products all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ya29.a0AWY7CkmYUciR_yRMvOqIgXfWwYpxL2oS8rAk762p1Ogj0imbvp7egREUMb3wPyqd8IVJmXCaid_o8JIRI6x66mWzy_Ky6KNlUAq5nWXOXAsTxhhZr53lMjJcWi0vE-FwuDxwRU6j8W4_NCXUB5F6EM3vOoWMHwaCgYKAbQSARMSFQG1tDrpE2y0Sd_aTQi40Q7WL1eAVQ0165",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "en-US",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8383/api/v1/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8383",
+					"path": [
+						"api",
+						"v1",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19-ms-getstudents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8060/student-api/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8060",
+					"path": [
+						"student-api",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19-ms-courses-teachers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8060/course-api/courses-teachers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8060",
+					"path": [
+						"course-api",
+						"courses-teachers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19-ms-auth-login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8060/auth-api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8060",
+					"path": [
+						"auth-api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19-ms-auth-getstudents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZjUxZTkzMmUyOTE1OjM4MTM3L2xvZ2luIiwic3ViIjoiYWRtaW5AdW5pLml0IiwiZXhwIjoxNjg0NjE5NDY0LCJpYXQiOjE2ODQ2MTk0MDQsInJvbGVzIjpbIlJPTEVfQURNSU4iXX0.KvA6u71i8JJH3NGQDWpSY0dboJts2sfh2gH7qhKldV8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8060/student-api/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8060",
+					"path": [
+						"student-api",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19-ms-auth-courses-teachers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vaG9zdC5kb2NrZXIuaW50ZXJuYWw6NTk3MzQvbG9naW4iLCJzdWIiOiJhZG1pbkB1bmkuaXQiLCJleHAiOjE2ODQ2MjA3MDksImlhdCI6MTY4NDYyMDY0OSwicm9sZXMiOlsiUk9MRV9BRE1JTiJdfQ.wvZ7YkxxpJ8i0xHjfwODWhXmbjJGYpX88i02MJ6JSiw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8060/course-api/courses-teachers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8060",
+					"path": [
+						"course-api",
+						"courses-teachers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "212-login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "passwd",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin@uni.it",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "api-key",
+						"value": "10",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "212-welcome",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-api-key",
+						"value": "FX001-99999",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/products/welcome",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"welcome"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
