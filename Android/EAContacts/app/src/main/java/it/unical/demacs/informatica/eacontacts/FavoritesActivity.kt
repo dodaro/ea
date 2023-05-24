@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -17,7 +18,7 @@ import it.unical.demacs.informatica.eacontacts.ui.theme.Typography
 
 @Composable
 fun FavoritesContacts(contactViewModel: ContactViewModel) {
-    val preferred = contactViewModel.contacts.filter { it.preferred  }
+    val preferred = contactViewModel.contacts.collectAsState(initial = emptyList()).value.filter { it.preferred  }
     if(preferred.isNotEmpty()) {
         LazyColumn {
             items(preferred) { contact ->

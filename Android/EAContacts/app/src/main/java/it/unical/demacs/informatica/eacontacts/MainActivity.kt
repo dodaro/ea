@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,7 +45,6 @@ import it.unical.demacs.informatica.eacontacts.ui.theme.EAContactsTheme
 import it.unical.demacs.informatica.eacontacts.viewmodels.ContactViewModel
 
 class MainActivity : ComponentActivity() {
-    private val contactViewModel: ContactViewModel = ContactViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomePage(contactViewModel)
+                    HomePage(ContactViewModel(this.application))
                 }
             }
         }
@@ -71,7 +71,7 @@ fun NavigationView(navHostController: NavHostController, contactViewModel: Conta
         listOf(navArgument("id") { type = NavType.StringType})) {
             it.arguments?.getString("id")?.let {
                 id ->
-                    contactViewModel.getContact(id)?.let {contact ->
+                    contactViewModel.getContact(id).collectAsState(initial = null).value?.let {contact ->
                         SingleContact(contact = contact)
                     }
             }

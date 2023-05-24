@@ -20,6 +20,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -35,11 +36,17 @@ import it.unical.demacs.informatica.eacontacts.viewmodels.ContactViewModel
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun AllContacts(contactViewModel: ContactViewModel, navHostController: NavHostController) {
+    val myContacts = contactViewModel.contacts.collectAsState(initial = emptyList())
     // Lazy Column to show all the contacts
     LazyColumn(modifier = Modifier.padding(all = 3.dp)) {
         // Here sticky header is a way to create the blocked header with the letters of the contact
-        // Groups is defined in contactViewModel and it is a map of a Char to a list of contacts
-        contactViewModel.groups.forEach { (firstLetter, contacts) ->
+        // Group by is a map of a Char to a list of contacts
+        myContacts.value.groupBy {
+            if(it.lastName.isNotEmpty())
+                it.lastName[0]
+            else
+                ' '
+        }.forEach { (firstLetter, contacts) ->
             // For each element in the group, we show (1) the sticky header
             stickyHeader {
                 // This is the card containing the single letter

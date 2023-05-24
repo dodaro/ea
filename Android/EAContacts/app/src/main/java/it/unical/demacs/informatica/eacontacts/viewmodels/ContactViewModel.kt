@@ -1,13 +1,16 @@
 package it.unical.demacs.informatica.eacontacts.viewmodels
 
+import android.app.Application
 import android.graphics.Bitmap
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
+import it.unical.demacs.informatica.eacontacts.model.AppDatabase
 import it.unical.demacs.informatica.eacontacts.model.Contact
-import kotlin.random.Random
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
-fun generateRandomFirstName(): String {
+/*fun generateRandomFirstName(): String {
     val names = listOf(
         "Marco", "Giulia", "Francesco", "Sara", "Luca",
         "Chiara", "Alessandro", "Laura", "Matteo", "Valentina",
@@ -47,55 +50,54 @@ fun generateRandomPhoneNumber(): String {
     val number = (1000000..9999999).random()
     return "$countryCode ${pre[Random.nextInt(0, pre.size)]} $number"
 }
+*/
 
-class ContactViewModel : ViewModel() {
-
-    private val _list : SnapshotStateList<Contact> = mutableStateListOf() // All contacts
-    private val _map : MutableMap<String, Contact> = mutableMapOf() // Map contact id to contact
-    var groups: Map<Char, List<Contact>> = mapOf() // Map first letter to list of contacts (needed for sticky headers)
+class ContactViewModel(application: Application) : ViewModel() {
+    private val _application = application
+    private val _list : Flow<List<Contact>> = AppDatabase.getInstance(context = application.applicationContext).contactDao().getAllContacts()
     val contacts = _list // Exposed contacts
 
-    init {
-        repeat(100) {// Generate random contacts
-            _list.add(Contact(firstName = generateRandomFirstName(), lastName = generateRandomLastName(), phoneNumber = generateRandomPhoneNumber()))
-        }
-        for(c: Contact in _list) { // Add contacts in the map
-            _map[c.id] = c
-        }
-        sortAndRefreshGroups() // Sort to show contacts in alphabetical way
-    }
-
-    private fun sortAndRefreshGroups() {
-        _list.sortWith(compareBy<Contact>{it.lastName}.thenBy { it.firstName}) // Sort contacts
-        groups = _list.groupBy { // Create groups
-            if(it.lastName.isNotEmpty())
-                it.lastName[0]
-            else
-                ' '
-        }
-    }
+//    init {
+//        repeat(100) {// Generate random contacts
+//            CoroutineScope(Dispatchers.IO).launch {
+//                AppDatabase.getInstance(context = context).contactDao().insert(
+//                    Contact(
+//                        firstName = generateRandomFirstName(),
+//                        lastName = generateRandomLastName(),
+//                        phoneNumber = generateRandomPhoneNumber()
+//                    )
+//                )
+//            }
+//        }
+//    }
 
     fun addContact(firstName: String, lastName: String, phoneNumber: String, image: Bitmap?): Boolean { // Add contact
         return try {
             val contact = Contact(firstName = firstName, lastName = lastName, phoneNumber = phoneNumber, image = image)
-            _map[contact.id] = contact
-            _list.add(contact)
-            sortAndRefreshGroups() // After each addition we sort the entire list: this can be done in a more efficient way!
+            CoroutineScope(Dispatchers.IO).launch {
+                AppDatabase.getInstance(context = _application.applicationContext).contactDao().insert(contact = contact)
+            }
             true
         } catch (e: IllegalArgumentException) {
             false
         }
     }
 
-    fun getContact(id: String) : Contact? {
-        return _map[id]
+    fun getContact(id: String) : Flow<Contact?> {
+        return AppDatabase.getInstance(context = _application.applicationContext).contactDao().getContactById(id)
     }
 
     fun removePreferred(contact: Contact) {
-        contact.preferred = false
+        CoroutineScope(Dispatchers.IO).launch {
+            contact.preferred = false
+            AppDatabase.getInstance(context = _application.applicationContext).contactDao().update(contact = contact)
+        }
     }
 
     fun setPreferred(contact: Contact) {
-        contact.preferred = true
+        CoroutineScope(Dispatchers.IO).launch {
+            contact.preferred = true
+            AppDatabase.getInstance(context = _application.applicationContext).contactDao().update(contact = contact)
+        }
     }
 }
