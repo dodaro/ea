@@ -75,7 +75,13 @@ public class PrankerMethodAspect { // test nel main
 
   @Before("logPointcutWithLogicalOperator()")
   public void logPointcutWithLogicalOperatorAdvice(){
+    log.debug("ciao ");
+
     log.info("In Aspect");
+
+    log.trace("trace");
+
+
     throw new RuntimeException("Prank");
   }
 }
