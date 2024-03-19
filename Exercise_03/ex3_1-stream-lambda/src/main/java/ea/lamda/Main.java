@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -46,7 +47,12 @@ public class Main
         }
         System.out.println();
 
-        list.forEach(s -> System.out.print(s+ " "));
+        list.forEach(new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                System.out.print(s + " ");
+            }
+        });
         System.out.println();
         list.stream().forEach(s -> System.out.print(s+ " "));
         System.out.println();
