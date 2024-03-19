@@ -24,8 +24,8 @@ public class LazyLoadExample {
     EmployeeController employeeController = ctx.getBean(EmployeeController.class);
 
     //differenze tra uno e l'altro
-    EmployeeManager empManager = employeeController.getManagerInstance();
-    //EmployeeManagerLazy empManager = employeeController.getLazyManagerInstance();
+    //EmployeeManager empManager = employeeController.getManagerInstance();
+    EmployeeManagerLazy empManager = employeeController.getLazyManagerInstance();
 
     Employee emp = empManager.create();
 
