@@ -39,9 +39,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.
-                authorizeHttpRequests().requestMatchers("/api/v1/register", "/api/v1/authenticate").permitAll().and().
-                authorizeHttpRequests().anyRequest().authenticated().and().csrf().disable().
-                sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+                authorizeHttpRequests( auth -> {
+                    auth.requestMatchers("/api/v1/register", "/api/v1/authenticate").permitAll();
+                    auth.anyRequest().authenticated();
+                }).csrf(csrf_ -> csrf_.disable()).
+                sessionManagement(mng -> mng.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).
                 addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class).build();
     }
 }
