@@ -1,14 +1,7 @@
-package it.unical.inf.ea.jpa.entity.inheritance.joinedtable;
+package it.unical.inf.ea.jpa.dbtest;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity(name="JT_Publication")
