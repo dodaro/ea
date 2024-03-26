@@ -2,6 +2,7 @@ package it.unical.demacs.informatica.loginpassword;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,7 +22,10 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.
-                authorizeHttpRequests().requestMatchers("/api/v1/register").permitAll().and().
-                authorizeHttpRequests().anyRequest().authenticated().and().httpBasic().and().csrf().disable().build();
+                authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("api/v1/register").permitAll();
+                    auth.anyRequest().authenticated();
+                }).httpBasic(Customizer.withDefaults()).
+                csrf(csrf_ -> csrf_.disable()).build();
     }
 }

@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +35,7 @@ public class UserController {
 
     @GetMapping(path="/users/{username}")
     @PreAuthorize("#username.equals(authentication.principal.getUsername()) or hasRole('ADMIN')")
-    public String getUser(@PathVariable("username") String username, Authentication authentication) {
+    public String getUser(@PathVariable("username") String username) {
         UserAccount user = userRepository.findByUsername(username);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("username", user.getUsername());

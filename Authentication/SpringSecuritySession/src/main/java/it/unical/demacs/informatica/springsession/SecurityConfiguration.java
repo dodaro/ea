@@ -1,9 +1,8 @@
 package it.unical.demacs.informatica.springsession;
 
-import it.unical.demacs.informatica.springsession.security.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,9 +22,17 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.
-                authorizeHttpRequests().requestMatchers("/api/v1/register").permitAll().and().
-                authorizeHttpRequests().anyRequest().authenticated().and().
-                formLogin().and().logout().invalidateHttpSession(true).logoutSuccessUrl("/login").and()
-                .build();
+                authorizeHttpRequests(
+                        auth -> {
+                            auth.requestMatchers("/api/v1/register").permitAll();
+                            auth.anyRequest().authenticated();
+                        }
+                ).
+                logout(lgt -> {
+                    lgt.invalidateHttpSession(true);
+                    lgt.logoutSuccessUrl("/login");
+                }).
+                formLogin(Customizer.withDefaults()).
+                build();
     }
 }
