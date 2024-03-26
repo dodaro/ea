@@ -1,11 +1,10 @@
-package it.unical.inf.ea.jpa.dbtest;
+package it.unical.inf.ea.jpa.entity.many2many;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-
 import java.util.Set;
 
 @Entity

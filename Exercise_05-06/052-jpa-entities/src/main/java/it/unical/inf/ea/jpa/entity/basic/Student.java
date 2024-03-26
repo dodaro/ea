@@ -10,6 +10,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -43,6 +44,7 @@ public class Student {
   // java.time.OffsetTime and java.time.OffsetDateTime.
   private Date birthDate;
 
+  private LocalDate birthdate2;
 
   // other fields, getters and setters
 
