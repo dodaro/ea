@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniexample.entities;
+package it.unical.inf.ea.uniprj.data.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +9,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Data
@@ -19,7 +18,6 @@ import org.hibernate.annotations.UuidGenerator;
 public class CourseMaterial {
 
     @Id
-    @UuidGenerator
     private Long id;
 
     @Column(name="URL", unique = true)

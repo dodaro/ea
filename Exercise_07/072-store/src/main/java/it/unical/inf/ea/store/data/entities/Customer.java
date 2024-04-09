@@ -28,7 +28,7 @@ public class Customer {
   private Long id;
 
   @Basic(optional = false)
-  @Column(name = "FISCAL_CODE", length = 255, unique = true)
+  @Column(name = "FISCAL_CODE", length = 16, unique = true)
   private String fiscalCode;
 
   @Basic(optional = false)

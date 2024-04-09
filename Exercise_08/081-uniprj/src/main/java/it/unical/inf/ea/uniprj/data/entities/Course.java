@@ -1,11 +1,13 @@
-package it.unical.inf.ea.uniexample.entities;
+package it.unical.inf.ea.uniprj.data.entities;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
@@ -14,7 +16,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Data
@@ -22,24 +23,20 @@ import java.util.Objects;
 public class Course {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "TITLE", unique = true)
     private String title;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "TEACHER_ID", referencedColumnName = "ID")
     private Teacher teacher;
 
-    @OneToOne
-    //@JoinColumn(name = "MATERIAL_ID", referencedColumnName = "ID")
+    @OneToOne(mappedBy = "course", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private CourseMaterial material;
 
-    @ManyToMany
-    @JoinTable(
-      name = "STUDENTS_COURSES",
-      joinColumns = @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID"),
-      inverseJoinColumns = @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")
-    )
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER)
     private List<Student> students = new ArrayList<>();
 
     public Course(String title) {
