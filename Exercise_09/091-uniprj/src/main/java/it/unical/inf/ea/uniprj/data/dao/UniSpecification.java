@@ -14,7 +14,6 @@ import org.springframework.data.jpa.domain.Specification;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 // Dynamic Queries With Specifications
@@ -102,10 +101,7 @@ public class UniSpecification {
       Predicate predicate = criteriaBuilder.conjunction();
 
       predicate = criteriaBuilder.and(predicate, root.join("teacher").get("lastName")).in(names);
-
       return  criteriaQuery.where(predicate).getRestriction();
-
-
     };
   }
 
