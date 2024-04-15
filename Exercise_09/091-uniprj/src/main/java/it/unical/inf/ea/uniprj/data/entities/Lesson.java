@@ -19,6 +19,7 @@ public class Lesson {
     @Column(name = "TITLE", unique = true)
     private String title;
 
+
     @ManyToOne
     @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
     private Course course;

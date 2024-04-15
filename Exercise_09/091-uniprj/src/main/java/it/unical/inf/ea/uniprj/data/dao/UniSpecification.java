@@ -53,7 +53,7 @@ public class UniSpecification {
       Predicate predicate = criteriaBuilder.isNotNull(root.get("id"));
 
       if (filter.getFirstName() != null)
-        predicate = criteriaBuilder.or(predicate, criteriaBuilder.equal(root.get("firstName"), filter.getFirstName()));
+        predicate = criteriaBuilder.or(predicate, criteriaBuilder.equal(root.get("firstNamei"), filter.getFirstName()));
       if (filter.getLastName() != null)
         predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("firstName"), filter.getLastName()));
       if (filter.getAge() != null) {

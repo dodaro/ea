@@ -37,13 +37,13 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  @CacheEvict(allEntries = true, value = { CacheConfig.CACHE_FOR_STUDENTS })
+  @CacheEvict(allEntries = true, value = { CacheConfig.CACHE_FOR_STUDENTS }) // invalido la cache perché c'è stata un'eliminazione
   public void delete(Student student) {
     studentDao.delete(student);
   }
 
   @Override
-  @Cacheable(value = CacheConfig.CACHE_FOR_STUDENTS, key = "#root.methodName") // invalido la cache perché c'è stata un'eliminazione
+  @Cacheable(value = CacheConfig.CACHE_FOR_STUDENTS, key = "#root.methodName")
   public Collection<Student> findAll() {
     return studentDao.findAll();
   }
@@ -110,7 +110,7 @@ public class StudentServiceImpl implements StudentService {
   @Override
   public List<Student> getAllSorted2() {
     return studentDao.findAll( Sort.by("lastName").ascending()
-        .and(Sort.by("lastName").descending()));
+        .and(Sort.by("firstName").descending()));
   }
 
   @Override
