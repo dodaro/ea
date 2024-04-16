@@ -11,8 +11,8 @@ e. find the bank with a name read as parameter. From this bank retrieve all tell
 f. count all bank with location = 'Cosenza' and store the result into a variable numCosenzaBank into class Bank. The
     column numCosenzaBank must not be mapped to the database [query method]
 g. find all contract of a customer [query method OR query]
-h. create the method deleteAllCustomer(Long bankId) into Bank flow that delete all the customer of the bank. The method
-   must be transactional
+h. create the method deleteAllCustomer(Long bankId) into Bank flow that delete all the customer of the bank.
+    The method must be transactional
 i. find all the customer who have an age read as a parameter [specification]
 
 
