@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniprj.core.handler;
+package it.unical.inf.ea.uniprj.config.handler;
 
 import it.unical.inf.ea.uniprj.dto.ServiceError;
 import it.unical.inf.ea.uniprj.exception.ThesisException;

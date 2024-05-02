@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
@@ -65,7 +66,7 @@ public class StudentController {
 
   @PutMapping("/students/{idStudent}")
   public ResponseEntity<StudentBasicDto> update(@PathVariable("idStudent") Long id, @RequestBody StudentDto employee) {
-    @Valid StudentBasicDto s = studentService.updateStudent(id, employee);
+    StudentBasicDto s = studentService.updateStudent(id, employee);
     return ResponseEntity.ok(s);
   }
 
