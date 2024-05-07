@@ -89,8 +89,8 @@ public class StudentServiceImpl implements StudentService {
   public List<StudentBasicDto> getByLastNameAndFirstName(String lastname,
       String firstname) {
     return studentDao.findAllByLastNameAndFirstName(lastname, firstname)
-        .stream().map(s -> modelMapper.map(s, StudentBasicDto.class))
-        .collect(Collectors.toList());
+            .stream().map(s -> modelMapper.map(s, StudentBasicDto.class))
+            .collect(Collectors.toList());
   }
 
   @Override
@@ -107,14 +107,15 @@ public class StudentServiceImpl implements StudentService {
     return all.stream().map(s -> modelMapper.map(s, StudentBasicDto.class)).collect(Collectors.toList());
   }
 
+  
   @Override
-  public List<StudentBasicDto> getByName(String name) {
-    Student example = new Student();
-    example.setFirstName(name);
-    Example<Student> ex = Example.of(example, ExampleMatcher.matchingAll().withIgnoreCase());
-    List<Student> all = studentDao.findAll(ex);
-    return all.stream().map(s -> modelMapper.map(s, StudentBasicDto.class)).collect(Collectors.toList());
-  }
+ public List<StudentBasicDto> getByName(String name) {
+  Student example = new Student();
+  example.setFirstName(name);
+  Example<Student> ex = Example.of(example, ExampleMatcher.matchingAll().withIgnoreCase());
+  List<Student> all = studentDao.findAll(ex);
+  return all.stream().map(s -> modelMapper.map(s, StudentBasicDto.class)).collect(Collectors.toList());
+}
 
   //091
 
@@ -182,4 +183,6 @@ public class StudentServiceImpl implements StudentService {
       return modelMapper.map(studentDao.save(student), StudentBasicDto.class);
     }).orElseThrow(() -> new EntityNotFoundException());
   }
+
+  
 }
