@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple WebSocket Chat</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+    <script type="application/javascript">
+        var stompClient = null;
+
+        window.onload = function() {
+            connect();
+        };
+
+        function connect() {
+            var socket = new SockJS('http://localhost:8080/kittify-socket'); // Adjust URL to your WebSocket endpoint
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function(frame) {
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topic/messages', function(messageOutput) {
+                    showMessageOutput(JSON.parse(messageOutput.body).message);
+                });
+            });
+        }
+
+        function sendMessage() {
+            var message = document.getElementById('messageInput').value;
+            stompClient.send("/app/chat", {}, JSON.stringify({'message': message}));
+        }
+
+        function showMessageOutput(message) {
+            var messagesDiv = document.getElementById('messages');
+            var messageParagraph = document.createElement('p');
+            messageParagraph.style.wordWrap = 'break-word';
+            messageParagraph.appendChild(document.createTextNode(message));
+            messagesDiv.appendChild(messageParagraph);
+        }
+
+        function disconnect() {
+            if (stompClient !== null) {
+                stompClient.disconnect();
+            }
+            console.log("Disconnected");
+        }
+    </script>
+</head>
+<body>
+    <h1>WebSocket Chat</h1>
+    <div>
+        <input id="messageInput" type="text" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send Message</button>
+    </div>
+    <div id="messages"></div>
+</body>
+</html>
