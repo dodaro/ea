@@ -29,7 +29,9 @@ public class Stream9List2Map
         }
 
         // Converting Product List into a Map
-        final Map<Integer, String> productPriceMap = productsList.stream().filter(product -> product.getPrice() > 30000)
+        final Map<Integer, String> productPriceMap = productsList
+                .stream()
+                .filter(product -> product.getPrice() > 30000)
                 .collect(Collectors.toMap(p -> p.getId(), p -> p.getName()));
 
         System.out.println(productPriceMap);

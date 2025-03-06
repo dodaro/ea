@@ -24,8 +24,10 @@ public class Stream0
                 .average()//
                 .getAsDouble();
 
-        average = products.stream().filter(p -> p.getName().length() < 10) //
-                .mapToDouble(p -> p.getPrice()).reduce(0, (p1, p2) -> p1 + p2);
+        double sum = products.stream() //
+                .filter(p -> p.getName().length() < 10) //
+                .mapToDouble(p -> p.getPrice())//
+                .reduce(0, (p1, p2) -> p1 + p2);
 
         final TreeSet<String> s = products.stream().map(p -> p.getName()).collect(Collectors.toCollection(TreeSet::new));
         final String c = products.stream().map(p -> p.getName()).collect(Collectors.joining("; "));

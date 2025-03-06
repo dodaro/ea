@@ -22,9 +22,9 @@ public class ExampleCompareMethods
         return sb.toString();
     }
 
-    public static String namesToString8(final List<Product> people)
+    public static String namesToString8(final List<Product> products)
     {
-        return people.stream() // Convert collection to Stream
+        return products.stream() // Convert collection to Stream
                 .map(Product::getName) // Map Person to name
                 .collect(Collectors.joining(", ", "Names: ", ".")); // Join names
     }

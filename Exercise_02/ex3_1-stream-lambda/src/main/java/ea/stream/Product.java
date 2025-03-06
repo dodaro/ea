@@ -1,17 +1,13 @@
 package ea.stream;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 class Product
 {
     private int id;
     private String name;
     private float price;
-    public Product(final int id, final String name, final float price)
-    {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
 }
