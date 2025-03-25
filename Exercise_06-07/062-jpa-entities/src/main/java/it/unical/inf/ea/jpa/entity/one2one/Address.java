@@ -28,3 +28,12 @@ public class Address {
     @OneToOne(mappedBy = "addressField")
     private User user;
 }
+
+
+
+
+
+
+
+
+

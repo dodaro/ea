@@ -1,4 +1,4 @@
-package it.unical.inf.ea.jpa.entity.inheritance.onetableperclass;
+package it.unical.inf.ea.jpa.entity.inheritance.tableperclass;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
