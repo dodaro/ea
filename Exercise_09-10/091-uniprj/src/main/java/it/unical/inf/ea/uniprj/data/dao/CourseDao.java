@@ -23,6 +23,8 @@ public interface CourseDao extends JpaRepository<Course, Long>, JpaSpecification
 
   List<Course> findAllByTeacherFirstName(String name);
 
+  List<Course> findAllByTeacherFirstNameAndTeacherLastName(String firtstname, String lastname);
+
   @Query("select c from Course c where c.teacher.firstName=:name")
   List<Course> getCoursesByTeacherName(@Param("name") String name);
 

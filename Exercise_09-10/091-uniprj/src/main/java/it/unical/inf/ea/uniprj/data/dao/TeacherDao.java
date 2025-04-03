@@ -48,8 +48,8 @@ public interface TeacherDao extends JpaRepository<Teacher, Long>, JpaSpecificati
       Join<Course, Teacher> teacherCourses = root.join("courses");
 
       return criteriaBuilder.and( //
-          criteriaBuilder.like(root.get("firstName"), "%" + nameTeacherStart), //
-          criteriaBuilder.like(teacherCourses.get("title"), "%" + nameCourseStart)
+          criteriaBuilder.like(root.get("title"), "%" + nameCourseStart), //
+          criteriaBuilder.like(teacherCourses.get("firstName"), "%" + nameTeacherStart)
       );
     };
   }

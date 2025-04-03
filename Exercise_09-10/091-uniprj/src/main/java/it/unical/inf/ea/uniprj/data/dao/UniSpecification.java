@@ -26,7 +26,6 @@ public class UniSpecification {
     private String lastName;
     private Integer age;
     private Student.Gender gender;
-
   }
 
   private UniSpecification() {

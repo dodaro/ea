@@ -22,8 +22,6 @@ public interface StudentDao
 
   List<Student> findAllFirst3ByLastName(String name);
 
-  List<Student> findAllByLastNameOrFirstName(String lastname, String f);
-
   List<Student> findAllByLastNameAndFirstName(String lastname, String f);
 
   List<Student> findAllByBirthDateBetweenOrderByLastNameDesc(LocalDate from, LocalDate to);
