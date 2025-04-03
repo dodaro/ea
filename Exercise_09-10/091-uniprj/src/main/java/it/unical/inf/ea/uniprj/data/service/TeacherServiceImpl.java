@@ -27,7 +27,7 @@ public class TeacherServiceImpl implements TeacherService {
     return teacherDao.findAll();
   }
 
-  @Transactional
+  @Transactional // vedi lezione 11
   @Override
   public void deleteTeacherAndEmptyCourse() {
     List<Course> all = courseDao.findAll();
@@ -53,7 +53,6 @@ public class TeacherServiceImpl implements TeacherService {
   }
 
   @Override
-  @Version
   public Teacher getById(Long id) {
     Optional<Teacher> opt = teacherDao.findById(id);
     return opt.orElseThrow(()->new RuntimeException(String.format("Don't exist a teacher with id: [%s]", id)));
