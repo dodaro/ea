@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class LessonServiceImpl implements LessonService {
 
     private final LessonDao lessonDao;
+
     @Override
     public Lesson save(Lesson lesson) {
         return lessonDao.save(lesson);

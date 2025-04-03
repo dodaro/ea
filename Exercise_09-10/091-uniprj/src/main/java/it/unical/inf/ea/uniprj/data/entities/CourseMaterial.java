@@ -32,5 +32,4 @@ public class CourseMaterial {
     @OneToOne(optional = false)
     @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
     private Course course;
-
 }
