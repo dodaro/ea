@@ -20,11 +20,11 @@ public class LoggingFilter extends AbstractRequestLoggingFilter {
 
   @Override
   protected void beforeRequest(HttpServletRequest request, String message) {
-    log.info(message);
+    log.info("EA: " + message);
   }
 
   @Override
   protected void afterRequest(HttpServletRequest request, String message) {
-    log.info(message);
+    log.info("EA: " + message);
   }
 }

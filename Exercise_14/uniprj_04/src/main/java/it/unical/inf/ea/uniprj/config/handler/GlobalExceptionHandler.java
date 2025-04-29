@@ -32,7 +32,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(NullPointerException.class)
-    @ResponseStatus(HttpStatus.BAD_GATEWAY)
+    @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
     public String onResourceNotFoundException(WebRequest req, NullPointerException ex){
         log.error("Exception handler :::: {}", ex);
         return "NULLLLLLLLLLLLLLLLLLLLLLLLLLLLL POINTER!!!";

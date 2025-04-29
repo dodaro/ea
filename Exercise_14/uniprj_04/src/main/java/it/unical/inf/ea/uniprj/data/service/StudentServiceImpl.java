@@ -70,7 +70,7 @@ public class StudentServiceImpl implements StudentService {
   @Override
   public StudentBasicDto getById(Long id) {
     Student student = studentDao.findById(id).orElseThrow(
-            () -> new EntityNotFoundException(messageLang.getMessage("teacher.notexist", id)));
+            () -> new EntityNotFoundException(messageLang.getMessage("student.notexist", id)));
     return modelMapper.map(student, StudentBasicDto.class);
   }
 

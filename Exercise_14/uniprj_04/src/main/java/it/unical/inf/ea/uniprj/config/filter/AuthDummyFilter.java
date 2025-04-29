@@ -20,7 +20,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/student-api/*")
 @Order(1)
 @RequiredArgsConstructor
 public class AuthDummyFilter extends OncePerRequestFilter {
@@ -33,10 +33,10 @@ public class AuthDummyFilter extends OncePerRequestFilter {
       if (request.getHeader(HttpHeaders.AUTHORIZATION) != null && currentUser.getCurrentAuditor().isPresent()) {
         long auth = Long.valueOf(request.getHeader(HttpHeaders.AUTHORIZATION));
         if (currentUser.getCurrentAuditor().get() == auth) {
+
           filterChain.doFilter(request, response);
 
-
-
+          //nothing
 
         } else {
           throw new AuthException("Wrong credential [" + auth + "]");
