@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Profilo Utente</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn-home {
+            background-color: #2196F3;
+        }
+        .btn-logout {
+            background-color: #f44336;
+        }
+        .profile-section {
+            margin-bottom: 20px;
+        }
+        .role {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #e1f5fe;
+            border-radius: 20px;
+        }
+        .role-admin {
+            background-color: #ffcdd2;
+        }
+        .role-basic {
+            background-color: #c8e6c9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Profilo Utente</h1>
+        <div>
+            <a class="btn btn-home" th:href="@{/}">Home</a>
+            <form th:action="@{/logout}" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-logout">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="profile-section">
+        <h2>Informazioni Utente</h2>
+        <p><strong>Username:</strong> <span th:text="${username}">user</span></p>
+
+        <h3>Ruoli:</h3>
+        <div>
+            <div th:each="authority : ${authorities}"
+                 th:class="${'role ' + (authority.authority == 'ROLE_ADMIN' ? 'role-admin' : (authority.authority == 'ROLE_BASIC' ? 'role-basic' : ''))}"
+                 th:text="${authority.authority}">
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-section">
+        <h2>Funzionalità Disponibili</h2>
+        <div sec:authorize="hasRole('BASIC')">
+            <h3>Funzionalità per utenti BASIC:</h3>
+            <ul>
+                <li>Accesso all'API Basic</li>
+                <li>Visualizzazione del profilo utente</li>
+            </ul>
+        </div>
+
+        <div sec:authorize="hasRole('ADMIN')">
+            <h3>Funzionalità per utenti ADMIN:</h3>
+            <ul>
+                <li>Accesso all'API Admin</li>
+                <li>Gestione utenti</li>
+                <li>Configurazione del sistema</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
