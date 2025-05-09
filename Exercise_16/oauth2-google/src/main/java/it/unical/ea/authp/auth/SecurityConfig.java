@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.web.filter.OncePerRequestFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -51,7 +50,9 @@ public class SecurityConfig {
                             .clearAuthentication(true)
                             .invalidateHttpSession(true)
                             .deleteCookies("JSESSIONID");
-                });
+                })
+                //.addFilterAfter(oAuth2AuthenticationHandler.createAfterFilter(), BasicAuthenticationFilter.class)
+                ;
 
         return http.build();
     }
