@@ -500,6 +500,145 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "ext17",
+			"item": [
+				{
+					"name": "ms-getstudents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8060/student-api/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8060",
+							"path": [
+								"student-api",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FeignClient - courses-teachers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8060/course-api/courses-teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8060",
+							"path": [
+								"course-api",
+								"courses-teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rabbitmq - get course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8060/course-api/messages/notify-course/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8060",
+							"path": [
+								"course-api",
+								"messages",
+								"notify-course",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rabbitmq - update course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8060/course-api/messages/notify-course-update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8060",
+							"path": [
+								"course-api",
+								"messages",
+								"notify-course-update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rabbitmq - create course",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Corso di Test RabbitMQ\",\r\n  \"teacherId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8060/course-api/messages/test-notification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8060",
+							"path": [
+								"course-api",
+								"messages",
+								"test-notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rabbitmq - stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8060/teacher-api/message-stats",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8060",
+							"path": [
+								"teacher-api",
+								"message-stats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
