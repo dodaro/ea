@@ -1,0 +1,58 @@
+server:
+  port: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+
+spring:
+  application:
+    name: student-service
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    url: jdbc:hsqldb:file:./hsql-db/ms/student/db
+    username: sa
+    password:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+  jpa:
+    database-platform: org.hibernate.dialect.HSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  zipkin:
+    base-url: http://localhost:9411
+    sender:
+      type: web
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+logging: # in alternativa una logback.xml. Questo è più snello ma meno configurabile
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId:-},%X{spanId:-}] ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    it.unical.inf.ea.uniprjms: INFO
+
+springdoc:
+  packages-to-scan: it.unical.inf.ea.uniprjms.student
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    groups:
+      enabled: true
