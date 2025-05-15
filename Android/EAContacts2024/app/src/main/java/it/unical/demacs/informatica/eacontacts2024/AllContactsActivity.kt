@@ -1,6 +1,5 @@
 package it.unical.demacs.informatica.eacontacts2024
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Row
@@ -23,6 +22,7 @@ import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -44,7 +44,7 @@ import it.unical.demacs.informatica.eacontacts2024.viewmodels.ContactViewModel
 import kotlinx.coroutines.delay
 
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AllContacts(contactViewModel: ContactViewModel, navHostController: NavHostController) {
     var searchText by remember { mutableStateOf("") }
@@ -79,7 +79,7 @@ fun AllContacts(contactViewModel: ContactViewModel, navHostController: NavHostCo
             // Search bar with dropdown menu
             ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
                 TextField(
-                    modifier = Modifier.menuAnchor().fillMaxWidth(),
+                    modifier = Modifier.menuAnchor(type=MenuAnchorType.PrimaryNotEditable, enabled=true).fillMaxWidth(),
                     value = searchText,
                     onValueChange = { searchText = it; expanded = it.isNotEmpty() && contactViewModel.searchList.isNotEmpty() },
                     placeholder = { Text(text = stringResource(R.string.search)) },

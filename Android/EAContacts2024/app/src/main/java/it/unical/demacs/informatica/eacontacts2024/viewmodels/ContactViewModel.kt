@@ -106,6 +106,6 @@ class ContactViewModel(application: Application) : ViewModel() {
         if(!_searchList.contains(search))
             _searchList.add(search)
         if(_searchList.size > 5)
-            _searchList.removeFirst()
+            _searchList.removeAt(0)
     }
 }

@@ -1,7 +1,6 @@
 package it.unical.demacs.informatica.eacontacts2024
 
 import android.content.Context
-import android.net.Uri
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -33,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.net.toUri
 import it.unical.demacs.informatica.eacontacts2024.ui.theme.Typography
 import it.unical.demacs.informatica.eacontacts2024.viewmodels.UserInfoViewModel
 
@@ -120,5 +120,6 @@ fun WebViewScreen(latitude: Double, longitude: Double) {
 }
 
 fun openChromeTabView(context: Context, latitude: Double, longitude: Double) {
-    CustomTabsIntent.Builder().build().launchUrl(context, Uri.parse("https://maps.google.com/?q=$latitude,$longitude"))
+    CustomTabsIntent.Builder().build().launchUrl(context,
+        "https://www.google.com/maps/search/?api=1&query=$latitude,$longitude".toUri())
 }

@@ -2,11 +2,12 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "it.unical.demacs.informatica.eacontacts2024"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "it.unical.demacs.informatica.eacontacts2024"
@@ -41,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.13"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
