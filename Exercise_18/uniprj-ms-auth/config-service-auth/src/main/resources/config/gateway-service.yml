@@ -1,0 +1,127 @@
+server:
+  port: 8060
+  max-http-header-size: 48KB  # Aumenta la dimensione massima dell'header HTTP
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId:-},%X{spanId:-}] ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: INFO
+    org.springframework.http.server.reactive: INFO
+    org.springframework.web.reactive: INFO
+    reactor.netty: INFO
+    redisratelimiter: INFO
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth-api/**
+          filters:
+            - RewritePath=/auth-api/(?<path>.*), /$\{path}
+        - id: student-service
+          uri: lb://student-service
+          predicates:
+            - Path=/student-api/**
+          filters:
+            - RewritePath=/student-api/(?<path>.*), /$\{path}
+        - id: teacher-service
+          uri: lb://teacher-service
+          predicates:
+            - Path=/teacher-api/**
+          filters:
+            - RewritePath=/teacher-api/(?<path>.*), /$\{path}
+        - id: course-service
+          uri: lb://course-service
+          predicates:
+            - Path=/course-api/**
+          filters:
+            - RewritePath=/course-api/(?<path>.*), /$\{path}
+
+      # Rotte per Swagger Course Service
+        - id: course-service-api-docs
+          uri: lb://COURSE-SERVICE
+          predicates:
+          - Path=/course-service/v3/api-docs/**
+          filters:
+          - RewritePath=/course-service/(?<segment>.*), /$\{segment}
+
+        - id: course-service-swagger-ui
+          uri: lb://COURSE-SERVICE
+          predicates:
+            - Path=/course-service/swagger-ui/**
+          filters:
+            - RewritePath=/course-service/(?<segment>.*), /$\{segment}
+
+      # Rotte per Swagger Student Service
+        - id: student-service-api-docs
+          uri: lb://STUDENT-SERVICE
+          predicates:
+            - Path=/student-service/v3/api-docs/**
+          filters:
+            - RewritePath=/student-service/(?<segment>.*), /$\{segment}
+
+        - id: student-service-swagger-ui
+          uri: lb://STUDENT-SERVICE
+          predicates:
+            - Path=/student-service/swagger-ui/**
+          filters:
+            - RewritePath=/student-service/(?<segment>.*), /$\{segment}
+
+      # Rotte per Swagger Teacher Service
+        - id: teacher-service-api-docs
+          uri: lb://TEACHER-SERVICE
+          predicates:
+            - Path=/teacher-service/v3/api-docs/**
+          filters:
+            - RewritePath=/teacher-service/(?<segment>.*), /$\{segment}
+
+        - id: teacher-service-swagger-ui
+          uri: lb://TEACHER-SERVICE
+          predicates:
+            - Path=/teacher-service/swagger-ui/**
+          filters:
+            - RewritePath=/teacher-service/(?<segment>.*), /$\{segment}
+
+
+        # Rotte per Swagger Auth Service
+        - id: auth-service-api-docs
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth-service/v3/api-docs/**
+          filters:
+            - RewritePath=/auth-service/(?<segment>.*), /$\{segment}
+
+        - id: auth-service-swagger-ui
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth-service/swagger-ui/**
+          filters:
+            - RewritePath=/auth-service/(?<segment>.*), /$\{segment}
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: Course Service
+        url: /course-service/v3/api-docs
+      - name: Student Service
+        url: /student-service/v3/api-docs
+      - name: Teacher Service
+        url: /teacher-service/v3/api-docs
+      - name: Auth Service
+        url: /auth-service/v3/api-docs
