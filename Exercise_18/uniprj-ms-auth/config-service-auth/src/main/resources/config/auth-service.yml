@@ -53,7 +53,7 @@ doc:
 
 # Configurazione JWT
 jwt:
-  secret: ZNAUhywjWMxENUeQvxjmDSfbNHaJeYmecN4pGHgZxQMqgdHZGLNejvtP9PuXCmE6
+  secret: ZNAUhywjWMxENUeQvxjmDSfbNHaJeYmecN4pGHgZxQMqgdHZGLNejvtP9PuXCmE6 # si potrebbe centrallizare inserirela in un punto comume o costante in SHARED o variabile di sistema
   expiration: 3600000 # 1 ora
   refresh:
     expiration: 86400000 # 24 ore

@@ -52,7 +52,7 @@ doc:
   packagesToScan: it.unical.inf.ea.uniprjms.course
 
 jwt:
-  secret: ZNAUhywjWMxENUeQvxjmDSfbNHaJeYmecN4pGHgZxQMqgdHZGLNejvtP9PuXCmE6
+  secret: ZNAUhywjWMxENUeQvxjmDSfbNHaJeYmecN4pGHgZxQMqgdHZGLNejvtP9PuXCmE6 # si potrebbe centrallizare inserirela in un punto comume o costante in SHARED o variabile di sistema
   security:
     enabled: true
     openService: true  # Questo flag indica che il servizio è completamente aperto

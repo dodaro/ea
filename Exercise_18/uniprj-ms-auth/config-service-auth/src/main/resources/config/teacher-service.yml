@@ -54,7 +54,7 @@ springdoc:
       enabled: true
 
 jwt:
-  secret: ZNAUhywjWMxENUeQvxjmDSfbNHaJeYmecN4pGHgZxQMqgdHZGLNejvtP9PuXCmE6
+  secret: ZNAUhywjWMxENUeQvxjmDSfbNHaJeYmecN4pGHgZxQMqgdHZGLNejvtP9PuXCmE6 # si potrebbe centrallizare inserirela in un punto comume o costante in SHARED o variabile di sistema
   ecurity:
     enabled: true
     publicPaths: /v3/api-docs/**, /swagger-ui/**, /swagger-ui.html

@@ -62,7 +62,7 @@ public class JwtSecurityAutoConfiguration {
                         auth.requestMatchers(securityProperties.getPublicPaths()).permitAll();
                     }
 
-                    // Nella configurazione delle rotte protette, modifica per supportare anche i metodi HTTP
+                    // Configurazione delle rotte protette,
                     if (securityProperties.getProtectedRoutes() != null) {
                         for (Map.Entry<String, String[]> entry : securityProperties.getProtectedRoutes().entrySet()) {
                             String path = entry.getKey();
