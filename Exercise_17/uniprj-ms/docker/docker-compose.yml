@@ -1,5 +1,6 @@
 version: '3.8'
 
+# docker compose -p uniprj_rabbitmq-zipkin up
 # RabbitMQ Management: http://localhost:15672/ (guest/guest)
 # Zipkin: http://localhost:9411/zipkin/
 

@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniprjms.domain.dto.mq;
+package it.unical.inf.ea.uniprjms.shared.dto.mq;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

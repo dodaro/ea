@@ -1,7 +1,7 @@
 package it.unical.inf.ea.uniprjms.teacher.data.service;
 
 import it.unical.inf.ea.uniprjms.teacher.data.entities.Teacher;
-import it.unical.inf.ea.uniprjms.domain.dto.TeacherBasicDto;
+import it.unical.inf.ea.uniprjms.shared.dto.TeacherBasicDto;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;

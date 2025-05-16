@@ -1,6 +1,6 @@
 package it.unical.inf.ea.uniprjms.shared.config.handler;
 
-import it.unical.inf.ea.uniprjms.domain.dto.ServiceError;
+import it.unical.inf.ea.uniprjms.shared.dto.ServiceError;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

@@ -1,13 +1,13 @@
 package it.unical.inf.ea.uniprjms.student.data.service;
 
-import it.unical.inf.ea.uniprjms.config.CacheConfig;
+import it.unical.inf.ea.uniprjms.shared.config.CacheConfig;
 import it.unical.inf.ea.uniprjms.student.data.dao.StudentDao;
 import it.unical.inf.ea.uniprjms.student.data.entities.Address;
 import it.unical.inf.ea.uniprjms.student.data.entities.Student;
-import it.unical.inf.ea.uniprjms.domain.dto.student.Gender;
-import it.unical.inf.ea.uniprjms.domain.dto.student.StudentBasicDto;
-import it.unical.inf.ea.uniprjms.domain.dto.student.StudentDto;
-import it.unical.inf.ea.uniprjms.domain.dto.student.StudentValue;
+import it.unical.inf.ea.uniprjms.shared.dto.student.Gender;
+import it.unical.inf.ea.uniprjms.shared.dto.student.StudentBasicDto;
+import it.unical.inf.ea.uniprjms.shared.dto.student.StudentDto;
+import it.unical.inf.ea.uniprjms.shared.dto.student.StudentValue;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -179,3 +179,4 @@ public class StudentServiceImpl implements StudentService {
     }).orElseThrow(() -> new EntityNotFoundException());
   }
 }
+

@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniprjms.teacher;
+package it.unical.inf.ea.uniprjms.student.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration;
 public class OpenAPIConfig {
     
     @Bean
-    public OpenAPI teacherServiceOpenAPI() {
+    public OpenAPI studentServiceOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Teacher Service API")
-                        .description("API per la gestione dei docenti")
+                        .title("Student Service API")
+                        .description("API per la gestione degli studenti")
                         .version("1.0")
                         .contact(new Contact()
                                 .name("UniPrj")

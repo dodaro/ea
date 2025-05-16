@@ -81,13 +81,6 @@
             <artifactId>zipkin-reporter-brave</artifactId>
         </dependency>
 
-        <!-- API documentation -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-
         <!-- Libreria condivisa -->
         <dependency>
             <groupId>it.unical.inf.ea</groupId>
@@ -109,7 +102,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Swagger -->
+        <!-- API documentation -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>

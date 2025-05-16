@@ -3,7 +3,7 @@ package it.unical.inf.ea.uniprjms.course.data.service;
 import it.unical.inf.ea.uniprjms.course.data.entities.Course;
 import it.unical.inf.ea.uniprjms.course.data.dao.CourseDao;
 import it.unical.inf.ea.uniprjms.course.service.CourseEventProducer;
-import it.unical.inf.ea.uniprjms.domain.dto.course.CourseTeacherDto;
+import it.unical.inf.ea.uniprjms.shared.dto.course.CourseTeacherDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.jpa.domain.Specification;

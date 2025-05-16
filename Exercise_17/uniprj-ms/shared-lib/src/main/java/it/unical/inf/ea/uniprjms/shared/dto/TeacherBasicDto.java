@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniprjms.domain.dto;
+package it.unical.inf.ea.uniprjms.shared.dto;
 
 import lombok.Data;
 

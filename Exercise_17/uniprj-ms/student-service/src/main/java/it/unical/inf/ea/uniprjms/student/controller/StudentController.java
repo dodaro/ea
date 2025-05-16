@@ -1,9 +1,9 @@
 package it.unical.inf.ea.uniprjms.student.controller;
 
 import it.unical.inf.ea.uniprjms.student.data.service.StudentService;
-import it.unical.inf.ea.uniprjms.domain.dto.student.Gender;
-import it.unical.inf.ea.uniprjms.domain.dto.student.StudentBasicDto;
-import it.unical.inf.ea.uniprjms.domain.dto.student.StudentDto;
+import it.unical.inf.ea.uniprjms.shared.dto.student.Gender;
+import it.unical.inf.ea.uniprjms.shared.dto.student.StudentBasicDto;
+import it.unical.inf.ea.uniprjms.shared.dto.student.StudentDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

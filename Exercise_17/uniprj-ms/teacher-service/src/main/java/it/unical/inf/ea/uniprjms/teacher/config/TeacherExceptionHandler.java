@@ -1,6 +1,6 @@
 package it.unical.inf.ea.uniprjms.teacher.config;
 
-import it.unical.inf.ea.uniprjms.domain.dto.ServiceError;
+import it.unical.inf.ea.uniprjms.shared.dto.ServiceError;
 import it.unical.inf.ea.uniprjms.shared.config.handler.GlobalExceptionHandler;
 import it.unical.inf.ea.uniprjms.teacher.exception.TeacherException;
 import jakarta.persistence.EntityNotFoundException;

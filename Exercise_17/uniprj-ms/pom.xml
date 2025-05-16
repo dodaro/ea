@@ -29,10 +29,10 @@
         <module>shared-lib</module>
         <module>config-service</module>
         <module>discovery-service</module>
-        <module>gateway-service</module>
         <module>student-service</module>
         <module>course-service</module>
         <module>teacher-service</module>
+        <module>gateway-service</module>
     </modules>
 
 

@@ -1,7 +1,7 @@
 package it.unical.inf.ea.uniprjms.teacher.service;
 
-import it.unical.inf.ea.uniprjms.domain.dto.course.CourseDto;
-import it.unical.inf.ea.uniprjms.domain.dto.mq.EventDto;
+import it.unical.inf.ea.uniprjms.shared.dto.course.CourseDto;
+import it.unical.inf.ea.uniprjms.shared.dto.mq.EventDto;
 import it.unical.inf.ea.uniprjms.shared.config.RabbitMQConstants;
 import it.unical.inf.ea.uniprjms.teacher.controller.MessageStatsController;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniprjms.domain.dto.student;
+package it.unical.inf.ea.uniprjms.shared.dto.student;
 
 public interface StudentValue {
 

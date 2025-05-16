@@ -1,8 +1,8 @@
 package it.unical.inf.ea.uniprjms.student.data.dao;
 
 import it.unical.inf.ea.uniprjms.student.data.entities.Student;
-import it.unical.inf.ea.uniprjms.domain.dto.student.Gender;
-import it.unical.inf.ea.uniprjms.domain.dto.student.StudentValue;
+import it.unical.inf.ea.uniprjms.shared.dto.student.Gender;
+import it.unical.inf.ea.uniprjms.shared.dto.student.StudentValue;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

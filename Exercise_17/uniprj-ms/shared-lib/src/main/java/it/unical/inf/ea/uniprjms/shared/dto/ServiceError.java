@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniprjms.domain.dto;
+package it.unical.inf.ea.uniprjms.shared.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;

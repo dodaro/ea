@@ -45,11 +45,13 @@
         </dependency>
 
         <!-- Swagger -->
+        <!--
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
             <version>${spring-doc.version}</version>
         </dependency>
+        -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>

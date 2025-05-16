@@ -1,7 +1,7 @@
 package it.unical.inf.ea.uniprjms.teacher.controller;
 
 import it.unical.inf.ea.uniprjms.teacher.data.service.TeacherService;
-import it.unical.inf.ea.uniprjms.domain.dto.TeacherBasicDto;
+import it.unical.inf.ea.uniprjms.shared.dto.TeacherBasicDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

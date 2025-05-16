@@ -3,8 +3,8 @@ package it.unical.inf.ea.uniprjms.course.service;
 import it.unical.inf.ea.uniprjms.course.client.TeacherClient;
 import it.unical.inf.ea.uniprjms.course.data.entities.Course;
 import it.unical.inf.ea.uniprjms.course.data.service.CourseService;
-import it.unical.inf.ea.uniprjms.domain.dto.TeacherBasicDto;
-import it.unical.inf.ea.uniprjms.domain.dto.course.CourseTeacherDto;
+import it.unical.inf.ea.uniprjms.shared.dto.TeacherBasicDto;
+import it.unical.inf.ea.uniprjms.shared.dto.course.CourseTeacherDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

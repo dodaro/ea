@@ -1,9 +1,9 @@
 package it.unical.inf.ea.uniprjms.teacher.data.service;
 
-import it.unical.inf.ea.uniprjms.config.CacheConfig;
+import it.unical.inf.ea.uniprjms.shared.config.CacheConfig;
 import it.unical.inf.ea.uniprjms.teacher.data.dao.TeacherDao;
 import it.unical.inf.ea.uniprjms.teacher.data.entities.Teacher;
-import it.unical.inf.ea.uniprjms.domain.dto.TeacherBasicDto;
+import it.unical.inf.ea.uniprjms.shared.dto.TeacherBasicDto;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

@@ -1,11 +1,11 @@
 package it.unical.inf.ea.uniprjms.student.data.service;
 
-import it.unical.inf.ea.uniprjms.config.CacheConfig;
+import it.unical.inf.ea.uniprjms.shared.config.CacheConfig;
 import it.unical.inf.ea.uniprjms.student.data.entities.Student;
-import it.unical.inf.ea.uniprjms.domain.dto.student.Gender;
-import it.unical.inf.ea.uniprjms.domain.dto.student.StudentBasicDto;
-import it.unical.inf.ea.uniprjms.domain.dto.student.StudentDto;
-import it.unical.inf.ea.uniprjms.domain.dto.student.StudentValue;
+import it.unical.inf.ea.uniprjms.shared.dto.student.Gender;
+import it.unical.inf.ea.uniprjms.shared.dto.student.StudentBasicDto;
+import it.unical.inf.ea.uniprjms.shared.dto.student.StudentDto;
+import it.unical.inf.ea.uniprjms.shared.dto.student.StudentValue;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;

@@ -1,6 +1,6 @@
 package it.unical.inf.ea.uniprjms.student;
 
-import it.unical.inf.ea.uniprjms.domain.dto.student.Gender;
+import it.unical.inf.ea.uniprjms.shared.dto.student.Gender;
 import it.unical.inf.ea.uniprjms.student.data.dao.StudentDao;
 import it.unical.inf.ea.uniprjms.student.data.entities.Address;
 import it.unical.inf.ea.uniprjms.student.data.entities.Student;

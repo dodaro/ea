@@ -1,4 +1,4 @@
-package it.unical.inf.ea.uniprjms.config;
+package it.unical.inf.ea.uniprjms.shared.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
