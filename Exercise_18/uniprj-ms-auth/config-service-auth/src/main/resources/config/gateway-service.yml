@@ -114,6 +114,7 @@ spring:
           filters:
             - RewritePath=/auth-service/(?<segment>.*), /$\{segment}
 
+# http://localhost:8060/swagger-ui.html
 springdoc:
   swagger-ui:
     urls:

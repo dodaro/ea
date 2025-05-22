@@ -1,0 +1,99 @@
+server:
+  port: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service:8061/eureka/
+
+spring:
+  application:
+    name: auth-service
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    url: jdbc:hsqldb:file:./hsql-db/ms/auth/auth/db
+    username: sa
+    password:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+  jpa:
+    database-platform: org.hibernate.dialect.HSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+  zipkin:
+    base-url: http://zipkin:9411
+    sender:
+      type: web
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId:-},%X{spanId:-}] ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+doc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  packagesToScan: it.unical.inf.ea.uniprjms.auth
+
+# Configurazione JWT
+jwt:
+  secret: ZNAUhywjWMxENUeQvxjmDSfbNHaJeYmecN4pGHgZxQMqgdHZGLNejvtP9PuXCmE6 # si potrebbe centrallizare inserirela in un punto comume o costante in SHARED o variabile di sistema
+  expiration: 3600000 # 1 ora
+  refresh:
+    expiration: 86400000 # 24 ore
+  security:
+    enabled: true
+    publicPaths: /auth/login, /auth/refresh, /auth/register, /v3/api-docs/**, /swagger-ui/**, /swagger-ui.html
+
+# Configurazione CORS
+cors:
+  allowed-origins: http://localhost:3000, http://localhost:8060
+
+
+---
+# PROFILO DOCKER
+spring:
+  config:
+    activate:
+      on-profile: docker
+  application:
+    name: auth-service
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service:8061/eureka/
+
+# DISABILITA ZIPKIN E TRACING
+management:
+  tracing:
+    enabled: false
+  zipkin:
+    tracing:
+      enabled: false
+
+# Logging senza tracing
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"

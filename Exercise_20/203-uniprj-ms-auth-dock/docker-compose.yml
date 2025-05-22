@@ -1,0 +1,130 @@
+name: uniprj-ms-auth-dock
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    environment:
+      - STORAGE_TYPE=mem
+    restart: always
+
+  config-service:
+    build:
+      context: ./config-service-auth-dock
+    image: config-service-auth-dock:0.0.1-SNAPSHOT
+    ports:
+      - "8088:8088"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8088/actuator/health"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+
+  discovery-service:
+    build:
+      context: ./discovery-service-auth-dock
+    image: discovery-service-auth-dock:0.0.1-SNAPSHOT
+    ports:
+      - "8761:8061"
+    depends_on:
+      config-service:
+        condition: service_healthy
+    links:
+      - config-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8061/actuator/health" ]
+
+  auth-service:
+    build:
+      context: ./auth-service-auth-dock
+    image: auth-service-auth-dock:0.0.1-SNAPSHOT
+    ports:
+      - "8080"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    links:
+      - config-service
+      - discovery-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  student-service:
+    build:
+      context: ./student-service-auth-dock
+    image: student-service-auth-dock:0.0.1-SNAPSHOT
+    ports:
+      - "8080"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    links:
+      - config-service
+      - discovery-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8061/eureka/
+
+  teacher-service:
+    build:
+      context: ./teacher-service-auth-dock
+    image: teacher-service-auth-dock:0.0.1-SNAPSHOT
+    ports:
+      - "8080"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    links:
+      - config-service
+      - discovery-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  course-service:
+    build:
+      context: ./course-service-auth-dock
+    image: course-service-auth-dock:0.0.1-SNAPSHOT
+    ports:
+      - "8080"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    links:
+      - config-service
+      - discovery-service
+      - teacher-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  gateway-service:
+    build:
+      context: ./gateway-service-auth-dock
+    image: gateway-service-auth-dock:0.0.1-SNAPSHOT
+    ports:
+      - "8060:8060"
+    depends_on:
+      discovery-service:
+        condition: service_healthy
+    links:
+      - config-service
+      - discovery-service
+      - auth-service
+      - student-service
+      - teacher-service
+      - course-service
+      - rabbitmq
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker

@@ -1,0 +1,4 @@
+admin@uni.it;admin;ADMIN
+student@uni.it;student;STUDENT
+teacher@uni.it;teacher;TEACHER
+test@uni.it;test;ADMIN,STUDENT,TEACHER
