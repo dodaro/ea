@@ -1,4 +1,4 @@
-package it.unical.inf.ae.core.service;
+package it.unical.inf.ae.data.service;
 
 import it.unical.inf.ae.shared.dto.UserDto;
 import org.springframework.data.domain.Page;

@@ -14,7 +14,7 @@
     <description>Multi-module Spring Boot application</description>
 
     <modules>
-        <module>shared-mod</module>
+        <module>domain-mod</module>
         <module>data-mod</module>
         <module>core-mod</module>
         <module>api-mod</module>

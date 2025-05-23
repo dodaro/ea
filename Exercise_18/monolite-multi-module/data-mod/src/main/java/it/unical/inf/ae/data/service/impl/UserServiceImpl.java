@@ -1,8 +1,8 @@
-package it.unical.inf.ae.core.service.impl;
+package it.unical.inf.ae.data.service.impl;
 
 import it.unical.inf.ae.core.mapper.UserMapper;
-import it.unical.inf.ae.core.service.UserService;
-import it.unical.inf.ae.data.repository.UserRepository;
+import it.unical.inf.ae.data.service.UserService;
+import it.unical.inf.ae.data.dao.UserRepository;
 import it.unical.inf.ae.shared.dto.UserDto;
 import it.unical.inf.ae.shared.entity.User;
 import it.unical.inf.ae.shared.exception.ResourceNotFoundException;

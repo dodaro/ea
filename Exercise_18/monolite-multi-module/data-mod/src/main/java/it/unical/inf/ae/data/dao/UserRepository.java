@@ -1,4 +1,4 @@
-package it.unical.inf.ae.data.repository;
+package it.unical.inf.ae.data.dao;
 
 import it.unical.inf.ae.shared.entity.User;
 import org.springframework.data.domain.Page;

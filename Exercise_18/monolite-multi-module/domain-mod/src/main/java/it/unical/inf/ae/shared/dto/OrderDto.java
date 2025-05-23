@@ -1,7 +1,7 @@
 package it.unical.inf.ae.shared.dto;
 
-import it.unical.inf.ae.shared.entity.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import it.unical.inf.ae.shared.entity.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

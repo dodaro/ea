@@ -1,9 +1,9 @@
-package it.unical.inf.ae.core.service.impl;
+package it.unical.inf.ae.data.service.impl;
 
 import it.unical.inf.ae.core.mapper.OrderMapper;
-import it.unical.inf.ae.core.service.OrderService;
-import it.unical.inf.ae.data.repository.OrderRepository;
-import it.unical.inf.ae.data.repository.UserRepository;
+import it.unical.inf.ae.data.service.OrderService;
+import it.unical.inf.ae.data.dao.OrderRepository;
+import it.unical.inf.ae.data.dao.UserRepository;
 import it.unical.inf.ae.shared.dto.OrderDto;
 import it.unical.inf.ae.shared.entity.Order;
 import it.unical.inf.ae.shared.entity.OrderStatus;
