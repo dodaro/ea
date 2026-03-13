@@ -3,13 +3,8 @@ package onetomany.domain;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import onetomany.main.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class PostDAO extends DomainObjectDAO {
 
