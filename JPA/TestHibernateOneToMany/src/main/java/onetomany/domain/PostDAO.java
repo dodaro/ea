@@ -9,84 +9,41 @@ import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class PostDAO extends DomainObjectDAO {
 
-    public void insert(Post p) {
-        cudOperations(p, OperationType.INSERT);
-    }
-
-    public void delete(Post p) {
-        cudOperations(p, OperationType.DELETE);
-    }
-
-    public void update(Post p) {
-        cudOperations(p, OperationType.UPDATE);
-    }
-
     public List<Post> findAll() {
-        Transaction transaction = null;
-        List<Post> posts = new ArrayList<>();
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            posts = session.createQuery("from Post", Post.class).list();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
-        return posts;
+        return executeInsideTransaction(
+                session -> session.createQuery("from Post", Post.class).list()
+        );
     }
 
     public List<Post> findAllUsingCriteria() {
-        Transaction transaction = null;
-        List<Post> posts = new ArrayList<>();
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Post> query = builder.createQuery(Post.class);
-            posts = session.createQuery(query.select(query.from(Post.class))).list();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
+        return executeInsideTransaction(
+            session -> {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+                CriteriaQuery<Post> query = builder.createQuery(Post.class);
+                return session.createQuery(query.select(query.from(Post.class))).list();
             }
-        }
-        return posts;
+        );
     }
 
     public List<Post> findAllWithComments() {
-        Transaction transaction = null;
-        List<Post> posts = new ArrayList<>();
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            posts = session.createQuery("from Post p join fetch p.comments", Post.class).list();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
-        return posts;
+        return executeInsideTransaction(
+        session -> session.createQuery("from Post p join fetch p.comments", Post.class).list()
+        );
     }
 
     public List<Post> findAllWithCommentsUsingCriteria() {
-        Transaction transaction = null;
-        List<Post> posts = new ArrayList<>();
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Post> query = builder.createQuery(Post.class);
-            Root<Post> postRoot = query.from(Post.class);
-            postRoot.fetch("comments");
-            posts = session.createQuery(query.select(postRoot)).list();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-        }
-        return posts;
+        return executeInsideTransaction(
+                session -> {
+                    CriteriaBuilder builder = session.getCriteriaBuilder();
+                    CriteriaQuery<Post> query = builder.createQuery(Post.class);
+                    Root<Post> postRoot = query.from(Post.class);
+                    postRoot.fetch("comments");
+                    return session.createQuery(query.select(postRoot)).list();
+                }
+        );
     }
 }

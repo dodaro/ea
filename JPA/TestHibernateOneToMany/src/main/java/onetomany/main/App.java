@@ -5,6 +5,8 @@ import onetomany.domain.CommentDAO;
 import onetomany.domain.Post;
 import onetomany.domain.PostDAO;
 
+import static java.lang.Thread.sleep;
+
 public class App {
     public static void main(String[] args) {
         PostDAO postDAO = new PostDAO();
