@@ -1,0 +1,10 @@
+PING google.com (172.217.23.78): 56 data bytes
+64 bytes from 172.217.23.78: seq=0 ttl=63 time=43.471 ms
+64 bytes from 172.217.23.78: seq=1 ttl=63 time=32.286 ms
+64 bytes from 172.217.23.78: seq=2 ttl=63 time=23.944 ms
+64 bytes from 172.217.23.78: seq=3 ttl=63 time=23.347 ms
+64 bytes from 172.217.23.78: seq=4 ttl=63 time=29.356 ms
+
+--- google.com ping statistics ---
+5 packets transmitted, 5 packets received, 0% packet loss
+round-trip min/avg/max = 23.347/30.480/43.471 ms

@@ -1,0 +1,16 @@
+services:
+  pinger:
+    build: .
+    container_name: pinger
+    volumes:
+      - ./shared:/condivisa
+
+  web:
+    image: nginx:alpine
+    container_name: web
+    ports:
+      - "8090:80"
+    volumes:
+      - ./shared:/usr/share/nginx/html:ro
+    depends_on:
+      - pinger
