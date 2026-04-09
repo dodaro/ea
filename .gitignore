@@ -8,6 +8,7 @@ mvnw
 mvnw.cmd
 .angular/
 .vscode/
+.claude/
 node_modules/
 /Exercise_14/uniprj_04/hsql-db/uniprj/db.lck
 /Exercise_14/uniprj_04/hsql-db/uniprj/db.log
