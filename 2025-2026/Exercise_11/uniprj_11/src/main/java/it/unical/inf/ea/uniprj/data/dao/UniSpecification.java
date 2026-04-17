@@ -55,7 +55,7 @@ public class UniSpecification {
       if (filter.getFirstName() != null)
         predicate = criteriaBuilder.or(predicate, criteriaBuilder.equal(root.get("firstName"), filter.getFirstName()));
       if (filter.getLastName() != null)
-        predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("firstName"), filter.getLastName()));
+        predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("lastName"), filter.getLastName()));
       if (filter.getAge() != null) {
         LocalDate date = LocalDate.now().minus(filter.getAge(), ChronoUnit.YEARS);
         predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("birthDate"), date));
