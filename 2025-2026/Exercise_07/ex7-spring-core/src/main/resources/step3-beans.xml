@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        === CONFIGURAZIONE XML DI SPRING ===
+        Approccio legacy, ma ancora presente in molti progetti enterprise.
+    -->
+
+    <!-- ============================================================ -->
+    <!-- SEZIONE 1: Wiring esplicito con constructor-arg              -->
+    <!-- Ogni dipendenza e' dichiarata manualmente nel file XML.      -->
+    <!-- ============================================================ -->
+
+    <!--
+        autowire-candidate="false" esclude questi bean dall'autowiring automatico.
+        Saranno usati SOLO dove referenziati esplicitamente (constructor-arg ref).
+        Senza questo attributo, l'autowire="byType" fallirebbe perche' ci sono
+        3 bean di tipo MessageSender e Spring non saprebbe quale scegliere.
+    -->
+    <bean id="emailSender" class="it.unical.inf.ea.step2_injection.EmailSender"
+          autowire-candidate="false"/>
+
+    <bean id="smsSender" class="it.unical.inf.ea.step2_injection.SmsSender"
+          autowire-candidate="false"/>
+
+    <!-- Wiring esplicito: specifico quale bean iniettare nel costruttore -->
+    <bean id="notificationServiceExplicit" class="it.unical.inf.ea.step2_injection.NotificationService">
+        <constructor-arg ref="emailSender"/>
+    </bean>
+
+
+    <!-- ============================================================ -->
+    <!-- SEZIONE 2: Autowiring automatico                             -->
+    <!-- Spring cerca automaticamente il bean giusto da iniettare.    -->
+    <!-- Questo era il modo "magico" di ridurre la verbosita' XML.   -->
+    <!-- ============================================================ -->
+
+    <!--
+        autowire="byType": Spring cerca un bean il cui tipo corrisponde
+        al parametro del costruttore (MessageSender).
+        ATTENZIONE: se ci sono piu' bean dello stesso tipo,
+        Spring lancia un'eccezione di ambiguita'!
+        Per questo emailSender e smsSender hanno autowire-candidate="false":
+        sono esclusi dall'autowiring e resta solo pushSender come candidato.
+    -->
+    <bean id="notificationServiceByType"
+          class="it.unical.inf.ea.step3_xml.OrderService"
+          autowire="byType"/>
+
+    <!--
+        autowire="constructor": simile a byType, ma applicato ai parametri
+        del costruttore. Spring cerca il bean il cui tipo matcha.
+    -->
+    <bean id="notificationServiceByConstructor"
+          class="it.unical.inf.ea.step3_xml.AlertService"
+          autowire="constructor"/>
+
+    <!--
+        Bean usato come unica dipendenza per OrderService e AlertService.
+        Per evitare ambiguita' con emailSender/smsSender, usiamo un
+        terzo sender dedicato.
+    -->
+    <bean id="pushSender" class="it.unical.inf.ea.step3_xml.PushSender"/>
+
+</beans>

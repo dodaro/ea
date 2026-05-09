@@ -1,0 +1,13 @@
+# Build                                                                                                                            
+docker compose up --build
+
+    http://localhost:8090/ping.txt
+
+# Stop
+docker compose stop
+
+# Start
+docker compose start
+
+# Remove
+docker compose down

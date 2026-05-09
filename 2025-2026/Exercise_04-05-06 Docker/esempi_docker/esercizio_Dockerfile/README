@@ -1,0 +1,4 @@
+# Build                                                                                                                            
+docker build -t ping-alpine .
+#RUN
+docker run --rm -v ./condivisa:/condivisa ping-alpine
