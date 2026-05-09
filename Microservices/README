@@ -1,8 +1,6 @@
 Per eseguire i progetti, scaricare Kafka 
-(https://kafka.apache.org/downloads) e avviare i server con i comandi:
+(https://kafka.apache.org/downloads) e avviare il server con i comandi:
 
-> bin/zookeeper-server-start.sh config/zookeeper.properties 
-
-e
-
-> bin/kafka-server-start.sh config/server.properties
+KAFKA_CLUSTER_ID="$(./bin/kafka-storage.sh random-uuid)"
+./bin/kafka-storage.sh format --standalone -t "$KAFKA_CLUSTER_ID" -c config/server.properties
+./bin/kafka-server-start.sh config/server.properties

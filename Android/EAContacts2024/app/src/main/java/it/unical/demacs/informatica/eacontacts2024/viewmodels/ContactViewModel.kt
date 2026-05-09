@@ -3,6 +3,7 @@ package it.unical.demacs.informatica.eacontacts2024.viewmodels
 import android.app.Application
 import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import it.unical.demacs.informatica.eacontacts2024.model.AppDatabase
 import it.unical.demacs.informatica.eacontacts2024.model.Contact
 import kotlinx.coroutines.CoroutineScope
@@ -75,7 +76,7 @@ class ContactViewModel(application: Application) : ViewModel() {
     fun addContact(firstName: String, lastName: String, phoneNumber: String, image: Bitmap?): Boolean { // Add contact
         return try {
             val contact = Contact(firstName = firstName, lastName = lastName, phoneNumber = phoneNumber, image = image)
-            CoroutineScope(Dispatchers.IO).launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 AppDatabase.getInstance(context = _application.applicationContext).contactDao().insert(contact = contact)
             }
             true
@@ -106,6 +107,6 @@ class ContactViewModel(application: Application) : ViewModel() {
         if(!_searchList.contains(search))
             _searchList.add(search)
         if(_searchList.size > 5)
-            _searchList.removeFirst()
+            _searchList.removeAt(0)
     }
 }
