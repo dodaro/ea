@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn-login {
+            background-color: #2196F3;
+        }
+        .btn-logout {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Spring Boot + Keycloak Demo</h1>
+        <div>
+            <div sec:authorize="!isAuthenticated()">
+                <a class="btn btn-login" th:href="@{/auth/login}">Login</a>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-logout">Logout</button>
+                </form>
+                <a class="btn" th:href="@{/profile}">Profilo</a>
+            </div>
+        </div>
+    </div>
+
+    <div sec:authorize="!isAuthenticated()">
+        <h2>Benvenuto, Visitatore!</h2>
+        <p>Effettua il login per accedere alle funzionalità protette.</p>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+        <h2>Benvenuto, <span th:text="${username}">user</span>!</h2>
+        <p>Hai effettuato l'accesso con i seguenti ruoli:</p>
+        <ul>
+            <li th:each="authority : ${authorities}" th:text="${authority.authority}"></li>
+        </ul>
+
+        <h3>API Disponibili:</h3>
+        <ul>
+            <li><a th:href="@{/api/welcome}">API Welcome (Pubblica)</a></li>
+            <li sec:authorize="hasRole('BASIC')">
+                <a th:href="@{/api/basic}">API Basic (Solo Utenti BASIC)</a>
+            </li>
+            <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/api/admin}">API Admin (Solo Utenti ADMIN)</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

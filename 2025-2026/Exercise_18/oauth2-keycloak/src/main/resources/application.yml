@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: auth-service
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8081/realms/ae-realm
+            authorization-uri: http://localhost:8081/realms/ae-realm/protocol/openid-connect/auth
+            token-uri: http://localhost:8081/realms/ae-realm/protocol/openid-connect/token
+            user-info-uri: http://localhost:8081/realms/ae-realm/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8081/realms/ae-realm/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: ae-client
+            client-secret: 5lsO4M02saGSxRsX5DTdiMO6dVWSCqXx # Sostituisci con il client secret generato da Keycloak
+            scope: openid,profile,email,roles
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    it.unical.ea.authp: DEBUG
