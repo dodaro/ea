@@ -1,0 +1,8 @@
+Avviare [mvn spring-boot:run] tutti i servizi nell'ordine:
+    config-service
+    discovery-service
+    gateway-service
+    [tutti_gli_altri]-service
+
+Per accedere a swagger
+    http://localhost:8060/swagger-ui.html

@@ -1,0 +1,98 @@
+# Prerequisito: mvn clean install (o ./start.sh --build)
+#
+# Avvio:  docker compose up --build
+# Stop:   docker compose down
+# Log:    docker compose logs -f <nome-servizio>
+
+version: '3.8'
+
+x-service-base: &service-base
+  build:
+    context: .
+    dockerfile: Dockerfile
+  environment:
+    - SPRING_PROFILES_ACTIVE=docker
+    - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8061/eureka/
+  depends_on:
+    discovery-service:
+      condition: service_healthy
+  restart: on-failure
+
+services:
+
+  config-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: config-service/target/config-service-0.0.1-SNAPSHOT.jar
+    ports:
+      - "8088:8088"
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8088/discovery-service/default"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  discovery-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: discovery-service/target/discovery-service-0.0.1-SNAPSHOT.jar
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8061/eureka/
+    ports:
+      - "8061:8061"
+    depends_on:
+      config-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8061/eureka/apps"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: on-failure
+
+  student-service:
+    <<: *service-base
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: student-service/target/student-service-0.0.1-SNAPSHOT.jar
+
+  teacher-service:
+    <<: *service-base
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: teacher-service/target/teacher-service-0.0.1-SNAPSHOT.jar
+
+  course-service:
+    <<: *service-base
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: course-service/target/course-service-0.0.1-SNAPSHOT.jar
+
+  gateway-service:
+    <<: *service-base
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        JAR_FILE: gateway-service/target/gateway-service-0.0.1-SNAPSHOT.jar
+    ports:
+      - "8060:8060"
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8060/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s

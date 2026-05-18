@@ -1,0 +1,21 @@
+spring:
+  config:
+    import: "optional:configserver:http://config-service:8088"
+    activate:
+      on-profile: docker
+---
+spring:
+  application:
+    name: auth-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
+
+
+jwt:
+  secret: ${JWT_SECRET:your-super-secure-jwt-secret-key-at-least-32-chars-long}
+  expiration: 3600000  # 1 hour
+  refresh:
+    expiration: 86400000  # 24 hours
+
+cors:
+  allowed-origins: "http://localhost:3000,http://localhost:4200"

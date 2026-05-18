@@ -1,0 +1,260 @@
+{
+  "info": {
+    "name": "uniprj-ms-auth",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "gateway", "value": "http://localhost:8060" },
+    { "key": "eureka",  "value": "http://localhost:8061" },
+    { "key": "config",  "value": "http://localhost:8088" },
+    { "key": "token",   "value": "" },
+    { "key": "refreshToken", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth Service",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": "{{gateway}}/auth-api/auth/register",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@unical.it\",\n  \"password\": \"password123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Login  ▶ salva token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "pm.collectionVariables.set('token', json.token);",
+                  "pm.collectionVariables.set('refreshToken', json.refreshToken);",
+                  "console.log('Token salvato:', json.token.substring(0, 40) + '...');"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{gateway}}/auth-api/auth/login",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@unical.it\",\n  \"password\": \"password123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Il token viene salvato automaticamente nella variabile {{token}}"
+          }
+        },
+        {
+          "name": "Refresh token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "pm.collectionVariables.set('token', json.token);",
+                  "console.log('Token aggiornato');"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "url": "{{gateway}}/auth-api/auth/refresh",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "\"{{refreshToken}}\"",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student Service",
+      "item": [
+        {
+          "name": "GET all students  [pubblico]",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway}}/student-api/students",
+            "description": "Endpoint pubblico — non richiede token"
+          }
+        },
+        {
+          "name": "GET student by ID  [token]",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway}}/student-api/students/1",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "GET student by ID  [NO token → 403]",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway}}/student-api/students/1",
+            "description": "Dimostra il 403 senza token"
+          }
+        },
+        {
+          "name": "GET search by lastname  [token]",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{gateway}}/student-api/students/search?name=Ferrari",
+              "host": ["{{gateway}}"],
+              "path": ["student-api", "students", "search"],
+              "query": [{ "key": "name", "value": "Ferrari" }]
+            },
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "PUT update student  [token]",
+          "request": {
+            "method": "PUT",
+            "url": "{{gateway}}/student-api/students/1",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Luca\",\n  \"lastName\": \"Ferrari\",\n  \"email\": \"luca.ferrari.new@email.com\",\n  \"birthDate\": \"2000-05-15\",\n  \"gender\": \"MALE\",\n  \"examAverageGrade\": 29.0,\n  \"wantsNewsletter\": false,\n  \"addressStreet\": \"Via Roma\",\n  \"addressNumber\": \"123\",\n  \"addressCity\": \"Milano\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "DELETE student  [token]",
+          "request": {
+            "method": "DELETE",
+            "url": "{{gateway}}/student-api/students/5",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Teacher Service",
+      "item": [
+        {
+          "name": "GET all teachers  [token]",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway}}/teacher-api/teachers",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        },
+        {
+          "name": "GET all teachers  [NO token → 403]",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway}}/teacher-api/teachers",
+            "description": "Dimostra il 403 senza token"
+          }
+        },
+        {
+          "name": "GET teacher by ID  [token]",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway}}/teacher-api/teachers/1",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Course Service",
+      "item": [
+        {
+          "name": "GET courses  [pubblico]",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway}}/course-api/courses",
+            "description": "Endpoint pubblico — openService: true"
+          }
+        },
+        {
+          "name": "GET courses with teachers  [token]",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway}}/course-api/courses-teachers",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "description": "Chiama teacher-service via Feign propagando il JWT"
+          }
+        },
+        {
+          "name": "GET courses with teachers  [NO token → 403]",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway}}/course-api/courses-teachers",
+            "description": "Feign chiama teacher-service senza token → 403 da teacher-service"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Infrastruttura",
+      "item": [
+        {
+          "name": "Eureka - servizi registrati",
+          "request": {
+            "method": "GET",
+            "url": "{{eureka}}/eureka/apps",
+            "header": [{ "key": "Accept", "value": "application/json" }]
+          }
+        },
+        {
+          "name": "Config - auth-service",
+          "request": {
+            "method": "GET",
+            "url": "{{config}}/auth-service/default"
+          }
+        },
+        {
+          "name": "Config - student-service",
+          "request": {
+            "method": "GET",
+            "url": "{{config}}/student-service/default"
+          }
+        },
+        {
+          "name": "Config - teacher-service",
+          "request": {
+            "method": "GET",
+            "url": "{{config}}/teacher-service/default"
+          }
+        },
+        {
+          "name": "Config - course-service",
+          "request": {
+            "method": "GET",
+            "url": "{{config}}/course-service/default"
+          }
+        },
+        {
+          "name": "Config - gateway-service",
+          "request": {
+            "method": "GET",
+            "url": "{{config}}/gateway-service/default"
+          }
+        }
+      ]
+    }
+  ]
+}
