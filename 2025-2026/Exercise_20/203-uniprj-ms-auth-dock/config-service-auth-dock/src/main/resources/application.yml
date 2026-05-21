@@ -1,0 +1,13 @@
+server:
+  port: 8088
+spring:
+  profiles:
+    active: native
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
